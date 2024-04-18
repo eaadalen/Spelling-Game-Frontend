@@ -14,7 +14,7 @@ export const LoginView = ({ onLoggedIn }) => {
     };
 
     fetch(
-      "https://blooming-gorge-72776-95bc6a7cbd30.herokuapp.com/login?Username=" +
+      "https://spelling-game-ef1de28a171a.herokuapp.com/login?Username=" +
         username +
         "&Password=" +
         password,

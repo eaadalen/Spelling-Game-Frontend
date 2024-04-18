@@ -27112,7 +27112,7 @@ const MainView = ()=>{
     };
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://blooming-gorge-72776-95bc6a7cbd30.herokuapp.com/projects", {
+        fetch("https://spelling-game-ef1de28a171a.herokuapp.com/users", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -41981,7 +41981,7 @@ const LoginView = ({ onLoggedIn })=>{
             Username: username,
             Password: password
         };
-        fetch("https://blooming-gorge-72776-95bc6a7cbd30.herokuapp.com/login?Username=" + username + "&Password=" + password, {
+        fetch("https://spelling-game-ef1de28a171a.herokuapp.com/login?Username=" + username + "&Password=" + password, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
