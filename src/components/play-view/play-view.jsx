@@ -4,31 +4,23 @@ import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
     const [word, setWord] = useState("");
+    const [wordBank, setWordBank] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        fetch(
-          "https://spelling-game-ef1de28a171a.herokuapp.com/users",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.word) {
-              alert("Correct");
-            } else {
-              alert("Incorrect");
-            }
-          })
-          .catch((e) => {
-            alert("Something went wrong");
-          });
+        useEffect(() => {
+            fetch(
+              "https://spelling-game-ef1de28a171a.herokuapp.com/words",
+              {
+                headers: { Authorization: `Bearer ${token}` }
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                setWordBank(data);
+              });
+          }, [token]);
       };
 
   return (

@@ -7,26 +7,7 @@ import { PlayView } from "../play-view/play-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-
-    fetch(
-      "https://spelling-game-ef1de28a171a.herokuapp.com/users",
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-
-      });
-  }, [token]);
 
   return (
     <BrowserRouter>
