@@ -1,31 +1,36 @@
 import "./play-view.scss"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
     const [word, setWord] = useState("");
     const [wordBank, setWordBank] = useState("");
 
+    useEffect(() => {
+        fetch(
+          "https://spelling-game-ef1de28a171a.herokuapp.com/words",
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setWordBank(data);
+            console.log(wordBank)
+          });
+      });
+
     const handleSubmit = (event) => {
         event.preventDefault();
-    
-        useEffect(() => {
-            fetch(
-              "https://spelling-game-ef1de28a171a.herokuapp.com/words",
-              {
-                headers: { Authorization: `Bearer ${token}` }
-              }
-            )
-              .then((response) => response.json())
-              .then((data) => {
-                setWordBank(data);
-              });
-          }, [token]);
+        checkSpelling();
       };
 
+    const checkSpelling = () => {
+        if (wordBank.contains(word)) {
+            alert("Correct")
+        }
+    }
+
   return (
-    <div class="container">
-        <div class="sub-container">
+    <div className="container">
+        <div className="sub-container">
             <p>Play Word</p>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -41,7 +46,7 @@ export const PlayView = () => {
                 <button className="button">Submit</button>
             </Form>
         </div>
-        <div class="sub-container">
+        <div className="sub-container">
             <p>Score</p>
             <p>Timer</p>
             <p>Strikes</p>
