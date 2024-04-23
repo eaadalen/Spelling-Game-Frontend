@@ -6,6 +6,11 @@ export const PlayView = () => {
     const [word, setWord] = useState("");
     const [wordBank, setWordBank] = useState("");
 
+    const playSound = () => {
+      var a = new Audio("https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3");
+      a.play();
+    };
+
     useEffect(() => {
         fetch(
           "https://spelling-game-ef1de28a171a.herokuapp.com/words",
@@ -31,7 +36,7 @@ export const PlayView = () => {
   return (
     <div className="container">
         <div className="sub-container">
-            <p>Play Word</p>
+          <button className="button" onClick={playSound}>Play Sound</button>
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Control
