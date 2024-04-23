@@ -11,9 +11,6 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <Row>
-        <p></p>
-      </Row>
       <Row className="justify-content-md-center">
         <Routes>
           <Route
