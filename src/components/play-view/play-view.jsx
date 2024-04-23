@@ -4,23 +4,47 @@ import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
     const [word, setWord] = useState("");
-    const [wordBank, setWordBank] = useState("");
+    const [spelling, setSpelling] = useState("");
+    const [url, setURL] = useState("");
 
-    const playSound = () => {
-      var a = new Audio("https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3");
+    // Generate random word
+    useEffect(() => {
+      fetch(
+        "https://random-word-api.herokuapp.com/word",
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        setWord(data);
+      });
+    });
+
+    const create_dict_URL = () => {
+      var url = "https://dictionaryapi.com/api/v3/references/collegiate/json/" + String(word) + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
+
+      fetch(url,)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data["0"])
+        setURL(data);
+      });
+    }
+
+    const create_sound_URL = () => {
+      var audio_id = "test";
+      var url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + String(word[0].charAt(0)) + "/" + "volumi02.mp3";
+
+      fetch(url,)
+      .then((response) => response.json())
+      .then((data) => {
+        setURL(data);
+      });
+    }
+
+    const playSound = (url) => {
+      create_dict_URL();
+      var a = new Audio(url);
       a.play();
     };
-
-    useEffect(() => {
-        fetch(
-          "https://spelling-game-ef1de28a171a.herokuapp.com/words",
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            setWordBank(data);
-            console.log(wordBank)
-          });
-      });
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -38,11 +62,12 @@ export const PlayView = () => {
         <div className="sub-container">
           <button className="button" onClick={playSound}>Play Sound</button>
             <Form onSubmit={handleSubmit}>
+                <p></p>
                 <Form.Group>
                     <Form.Control
                         type="text"
-                        value={word}
-                        onChange={(e) => setWord(e.target.value)}
+                        value={spelling}
+                        onChange={(e) => setSpelling(e.target.value)}
                         placeholder="Start Typing..."
                         required
                     />
