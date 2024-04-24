@@ -6,6 +6,7 @@ export const PlayView = () => {
     const [word, setWord] = useState("");
     const [spelling, setSpelling] = useState("");
     const [url, setURL] = useState("");
+    const [soundID, setSoundID] = useState("");
 
     // Generate random word
     useEffect(() => {
@@ -18,32 +19,35 @@ export const PlayView = () => {
       });
     });
 
-    const create_dict_URL = () => {
-      var url = "https://dictionaryapi.com/api/v3/references/collegiate/json/" + String(word) + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
+    const getSoundID = () => {
+      var dict_url = "https://dictionaryapi.com/api/v3/references/collegiate/json/" + String(word) + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
 
-      fetch(url,)
+      fetch(dict_url,)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data["0"])
-        setURL(data);
+        console.log(data[0]["hwi"]["prs"][0]["sound"]["audio"])
+        setSoundID(data[0]["hwi"]["prs"][0]["sound"]["audio"]);
       });
     }
 
     const create_sound_URL = () => {
-      var audio_id = "test";
-      var url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + String(word[0].charAt(0)) + "/" + "volumi02.mp3";
+      //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + String(word[0].charAt(0)) + "/" + String(soundID) + ".mp3";
+      var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3";
+      console.log(sound_url)
 
-      fetch(url,)
+      fetch(sound_url,)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         setURL(data);
       });
     }
 
     const playSound = (url) => {
-      create_dict_URL();
-      var a = new Audio(url);
-      a.play();
+      getSoundID();
+      create_sound_URL();
+      //var a = new Audio(url);
+      //a.play();
     };
 
     const handleSubmit = (event) => {
