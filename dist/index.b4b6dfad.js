@@ -37158,9 +37158,11 @@ const PlayView = ()=>{
         //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + String(word[0].charAt(0)) + "/" + String(soundID) + ".mp3";
         var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3";
         console.log(sound_url);
-        fetch(sound_url).then((response)=>response.json()).then((data)=>{
-            console.log(data);
-            setURL(data);
+        fetch("https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3").then((res)=>res.blob()).then((myBlob)=>{
+            const objectURL = URL.createObjectURL(myBlob);
+            const newAudioURL = objectURL;
+            var a = new Audio(newAudioURL);
+            a.play();
         });
     };
     const playSound = ()=>{
@@ -37188,7 +37190,15 @@ const PlayView = ()=>{
                         children: "Play Sound"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 67,
+                        lineNumber: 69,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("audio", {
+                        src: "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3",
+                        crossOrigin: "anonymous"
+                    }, void 0, false, {
+                        fileName: "src/components/play-view/play-view.jsx",
+                        lineNumber: 70,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -37196,7 +37206,7 @@ const PlayView = ()=>{
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 69,
+                                lineNumber: 72,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -37208,17 +37218,17 @@ const PlayView = ()=>{
                                     required: true
                                 }, void 0, false, {
                                     fileName: "src/components/play-view/play-view.jsx",
-                                    lineNumber: 71,
+                                    lineNumber: 74,
                                     columnNumber: 21
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 70,
+                                lineNumber: 73,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 79,
+                                lineNumber: 82,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -37226,19 +37236,19 @@ const PlayView = ()=>{
                                 children: "Submit"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 80,
+                                lineNumber: 83,
                                 columnNumber: 17
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 68,
+                        lineNumber: 71,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 66,
+                lineNumber: 68,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37248,33 +37258,33 @@ const PlayView = ()=>{
                         children: "Score"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 84,
+                        lineNumber: 87,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "Timer"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 85,
+                        lineNumber: 88,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "Strikes"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 86,
+                        lineNumber: 89,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 83,
+                lineNumber: 86,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/play-view/play-view.jsx",
-        lineNumber: 65,
+        lineNumber: 67,
         columnNumber: 5
     }, undefined);
 };

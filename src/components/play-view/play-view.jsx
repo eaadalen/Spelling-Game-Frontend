@@ -35,11 +35,13 @@ export const PlayView = () => {
       var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3";
       console.log(sound_url)
 
-      fetch(sound_url,)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setURL(data);
+      fetch("https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3")
+      .then(res => res.blob())
+      .then((myBlob) => {
+          const objectURL = URL.createObjectURL(myBlob);
+          const newAudioURL = objectURL;
+          var a = new Audio(newAudioURL);
+          a.play();
       });
     }
 
@@ -65,6 +67,7 @@ export const PlayView = () => {
     <div className="container">
         <div className="sub-container">
           <button className="button" onClick={playSound}>Play Sound</button>
+          <audio src="https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3" crossOrigin="anonymous"></audio>
             <Form onSubmit={handleSubmit}>
                 <p></p>
                 <Form.Group>
