@@ -1,4 +1,3 @@
-import { create } from "domain";
 import "./play-view.scss"
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -24,7 +23,6 @@ export const PlayView = () => {
 
     async function create_sound_URL(raw_word, soundID) {
       var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word[0].charAt(0) + "/" + soundID + ".mp3";
-
       fetch(sound_url)
       .then(res => res.blob())
       .then((myBlob) => {
@@ -42,11 +40,6 @@ export const PlayView = () => {
       if (calc_soundID != undefined) {
         create_sound_URL(random_word, calc_soundID);
       }
-      console.log(random_word)
-      console.log(calc_soundID)
-      //create_sound_URL();
-      //var a = new Audio(url);
-      //a.play();
     };
 
     const handleSubmit = (event) => {
