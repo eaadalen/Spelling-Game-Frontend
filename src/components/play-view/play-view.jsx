@@ -44,14 +44,8 @@ export const PlayView = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        checkSpelling();
+        //checkSpelling();
       };
-
-    const checkSpelling = () => {
-        if (wordBank.contains(word)) {
-            alert("Correct")
-        }
-    }
 
   return (
     <div className="container">
