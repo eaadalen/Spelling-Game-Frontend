@@ -1,3 +1,4 @@
+import { get } from "http";
 import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
@@ -5,39 +6,42 @@ import Form from "react-bootstrap/Form";
 export const PlayView = () => {
     const [word, setWord] = useState("");
     const [spelling, setSpelling] = useState("");
-    const [url, setURL] = useState("");
     const [soundID, setSoundID] = useState("");
 
-    // Generate random word
-    useEffect(() => {
+    const generateWord = () => {
       fetch(
         "https://random-word-api.herokuapp.com/word",
       )
       .then((response) => response.json())
       .then((data) => {
+        console.log("word: " + String(data))
         setWord(data);
+        getSoundID();
       });
-    });
+    }
 
     const getSoundID = () => {
-      var dict_url = "https://dictionaryapi.com/api/v3/references/collegiate/json/" + String(word) + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
+      var dict_url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + String(word) + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
 
-      fetch(dict_url,)
+      fetch(dict_url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data[0]["hwi"]["prs"][0]["sound"]["audio"])
-        setSoundID(data[0]["hwi"]["prs"][0]["sound"]["audio"]);
+        if (data.length < 20 && data != undefined) {  // Check if randomly generated word is in Merriam Webster database
+          console.log("audio code: " + String(data[0]["hwi"]["prs"][0]["sound"]["audio"]))
+          setSoundID(String(data[0]["hwi"]["prs"][0]["sound"]["audio"]))
+          create_sound_URL();
+        }
       });
     }
 
     const create_sound_URL = () => {
-      //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + String(word[0].charAt(0)) + "/" + String(soundID) + ".mp3";
-      var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3";
+      var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + word[0].charAt(0) + "/" + soundID + ".mp3";
       console.log(sound_url)
 
-      fetch("https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3")
+      fetch(sound_url)
       .then(res => res.blob())
       .then((myBlob) => {
+          console.log('here3')
           const objectURL = URL.createObjectURL(myBlob);
           const newAudioURL = objectURL;
           var a = new Audio(newAudioURL);
@@ -46,8 +50,7 @@ export const PlayView = () => {
     }
 
     const playSound = () => {
-      getSoundID();
-      create_sound_URL();
+      generateWord();
       //var a = new Audio(url);
       //a.play();
     };
@@ -67,7 +70,6 @@ export const PlayView = () => {
     <div className="container">
         <div className="sub-container">
           <button className="button" onClick={playSound}>Play Sound</button>
-          <audio src="https://media.merriam-webster.com/audio/prons/en/us/mp3/v/volumi02.mp3" crossOrigin="anonymous"></audio>
             <Form onSubmit={handleSubmit}>
                 <p></p>
                 <Form.Group>
