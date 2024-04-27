@@ -3,7 +3,6 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
-    const [word, setWord] = useState("");
     const [spelling, setSpelling] = useState("");
 
     async function generateWord() {

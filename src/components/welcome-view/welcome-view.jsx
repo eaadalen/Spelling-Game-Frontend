@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export const WelcomeView = () => {
   return (
-    <div class="container">
+    <div className="container">
         <h1>Spelling Survival</h1>
         <Link to={`/play`}>
-            <a class="button">Start</a>
+            <p className="button">Start</p>
         </Link>
     </div>
   );
