@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
+    const hello = "hello"
 
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
