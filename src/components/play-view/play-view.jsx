@@ -3,7 +3,6 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
-    const [word, setWord] = useState("");
     const [spelling, setSpelling] = useState("");
 
     async function generateWord() {
@@ -16,8 +15,10 @@ export const PlayView = () => {
       var dict_url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + random + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
       const response = await fetch(dict_url)
       const response_json = await response.json()
-      if (response_json.length < 20 && response_json != undefined) {  // Check if randomly generated word is in Merriam Webster database
+      try {
         return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
+      } catch (error) {
+        playSound();
       }
     }
 
@@ -31,7 +32,7 @@ export const PlayView = () => {
           const newAudioURL = objectURL;
           var a = new Audio(newAudioURL);
           a.play();
-      });
+      })
     }
 
     async function playSound() {
