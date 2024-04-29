@@ -33,6 +33,11 @@ export const PlayView = () => {
           var a = new Audio(newAudioURL);
           a.play();
       })
+      .catch(err => {
+        console.log('caught it!',err);
+        playSound();
+        return 0
+      })
     }
 
     async function playSound() {
