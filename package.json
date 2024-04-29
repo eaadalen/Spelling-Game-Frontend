@@ -9,7 +9,9 @@
   "license": "ISC",
   "dependencies": {
     "@parcel/reporter-dev-server": "^2.12.0",
+    "audio": "^1.2.0",
     "bootstrap": "^5.3.3",
+    "openai": "^4.38.5",
     "prop-types": "^15.8.1",
     "react": "18.0.0",
     "react-bootstrap": "^2.10.1",
@@ -25,6 +27,7 @@
     "buffer": "^6.0.3",
     "domain-browser": "^3.5.0",
     "parcel": "^2.11.0",
+    "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "punycode": "^1.4.1",
     "stream-http": "^3.2.0"
