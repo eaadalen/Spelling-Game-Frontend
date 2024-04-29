@@ -1,11 +1,9 @@
 import "./play-view.scss"
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
-import OpenAI from "openai";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
@@ -13,24 +11,36 @@ export const PlayView = () => {
       return response_json
     }
 
-    async function main(random_word) {
-      console.log(random_word);
-      const mp3 = await openai.audio.speech.create({
-        model: "tts-1",
-        voice: "alloy",
-        input: String(random_word)
-      });
-      mp3.blob().then((myBlob) => {
-        const objectURL = URL.createObjectURL(myBlob);
-        const newAudioURL = objectURL;
-        var a = new Audio(newAudioURL);
-        a.play();
-    });
+    async function getSoundID(random) {
+      var dict_url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + random + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
+      const response = await fetch(dict_url)
+      const response_json = await response.json()
+      try {
+        return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
+      } catch (error) {
+        playSound();
+      }
+    }
+
+    async function create_sound_URL(raw_word, soundID) {
+      var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word[0].charAt(0) + "/" + soundID + ".mp3";
+      fetch(sound_url)
+      .then(res => res.blob())
+      .then((myBlob) => {
+          console.log(sound_url)
+          const objectURL = URL.createObjectURL(myBlob);
+          const newAudioURL = objectURL;
+          var a = new Audio(newAudioURL);
+          a.play();
+      })
     }
 
     async function playSound() {
-      word = await generateWord();
-      main(word);
+      const random_word = await generateWord();
+      const calc_soundID = await getSoundID(random_word);
+      if (calc_soundID != undefined) {
+        create_sound_URL(random_word, calc_soundID);
+      }
     };
 
     const handleSubmit = (event) => {
