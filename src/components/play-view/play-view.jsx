@@ -4,7 +4,8 @@ import Form from "react-bootstrap/Form";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
-    const [word, setWord] = useState();
+    const [word, setWord] = useState("");
+    const [sound, setSound] = useState();
 
     useEffect(() => {
       getSound();
@@ -13,6 +14,7 @@ export const PlayView = () => {
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
+      setWord(response_json)
       return response_json
     }
 
@@ -36,7 +38,7 @@ export const PlayView = () => {
           const objectURL = URL.createObjectURL(myBlob);
           const newAudioURL = objectURL;
           var a = new Audio(newAudioURL);
-          setWord(a);
+          setSound(a);
       })
       .catch(err => {
         console.log('caught it!',err);
@@ -51,15 +53,20 @@ export const PlayView = () => {
       await create_sound_URL(random_word, calc_soundID);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        //checkSpelling();
-      };
-
     const playSound = () => {
-      word.play()
+      sound.play()
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (spelling == word[0]) {
+          console.log("Correct!")
+        }
+        else {
+          console.log("Incorrect!")
+        }
+      };
+    
   return (
     <div className="container">
         <div className="sub-container">
