@@ -6,6 +6,9 @@ export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
     const [word, setWord] = useState("");
     const [sound, setSound] = useState();
+    const [strikes, setStrikes] = useState(1);
+    const [score, setScore] = useState(100);
+    const [streak, setStreak] = useState(1);
 
     useEffect(() => {
       getSound();
@@ -60,10 +63,33 @@ export const PlayView = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (spelling == word[0]) {
+          if (streak < 3) {
+            setScore(score + 100)
+          }
+          else if (streak >= 3 && streak < 10) {
+            setScore(score + 200)
+          }
+          else {
+            setScore(score + 300)
+          }
+          setStreak(streak + 1)
           console.log("Correct!")
+          console.log("Score: " + String(score))
+          console.log("Streak: " + String(streak))
+          getSound();
         }
         else {
-          console.log("Incorrect!")
+          setStrikes(strikes + 1)
+          setStreak(1)
+          if (strikes > 2) {
+            console.log("Strikes: " + String(strikes))
+            console.log("Game Over!")
+          }
+          else {
+            console.log("Incorrect!")
+            console.log("Strikes: " + String(strikes))
+            getSound();
+          }
         }
       };
     
