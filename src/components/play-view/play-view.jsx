@@ -2,7 +2,6 @@ import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import checkmark from '../../../media/checkmark.svg';
-import { setTimeout } from "timers/promises";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
@@ -64,11 +63,15 @@ export const PlayView = () => {
       sound.play()
     };
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     async function handleSubmit(event) {
         event.preventDefault();
         if (spelling == word[0]) {
-          setOpen(true)
-          await setTimeout(2000)
+          setCorrectOpen(true)
+          await sleep(1000)
           setCorrectOpen(false)
           if (streak < 3) {
             setScore(score + 100)
@@ -87,7 +90,7 @@ export const PlayView = () => {
         }
         else {
           setIncorrectOpen(true)
-          await setTimeout(5000);
+          await sleep(1000)
           setIncorrectOpen(false)
           setStrikes(strikes + 1)
           setStreak(1)
