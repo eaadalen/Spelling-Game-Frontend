@@ -73,6 +73,23 @@ h1 {
   display: flex;
 }
 
+.correct {
+  background: green;
+  align-items: center;
+  height: 50px;
+  display: flex;
+}
+
+.incorrect {
+  background: red;
+}
+
+.checkmark {
+  max-height: 30px;
+  margin: auto;
+  display: block;
+}
+
 .sub-container {
   padding: 100px;
 }

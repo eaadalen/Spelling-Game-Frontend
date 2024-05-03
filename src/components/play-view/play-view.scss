@@ -11,6 +11,23 @@ $color: rgb(0, 0, 0);
     text-align: center;
 }
 
+.correct {
+	background: green;
+	height: 50px;
+	display: flex;
+    align-items: center;
+}
+
+.incorrect {
+	background: red;
+}
+
+.checkmark {
+	display: block;
+	max-height: 30px;
+	margin: auto;
+}
+
 .sub-container {
     padding: 100px;
 }

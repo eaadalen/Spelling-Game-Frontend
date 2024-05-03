@@ -1,6 +1,7 @@
 import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
+import checkmark from '../../../media/checkmark.svg';
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
@@ -92,22 +93,31 @@ export const PlayView = () => {
           }
         }
       };
-    
+
+    const [isOpen, setIsOpen] = useState(false);
+  
+    function toggle() {
+      setIsOpen((isOpen) => !isOpen);
+    }
+  
   return (
     <div className="container">
         <div className="sub-container">
           <button className="button" onClick={playSound}>Play Sound</button>
             <Form onSubmit={handleSubmit}>
                 <p></p>
-                <Form.Group>
+                <div>
+                  {isOpen && <div className="correct"><img src={checkmark} className="checkmark"/></div>}
+                  <button onClick={toggle}>Toggle show</button>
+                  <Form.Group>
                     <Form.Control
                         type="text"
                         value={spelling}
                         onChange={(e) => setSpelling(e.target.value)}
                         placeholder="Start Typing..."
-                        required
                     />
-                </Form.Group>
+                  </Form.Group>
+                </div>
                 <p></p>
                 <button className="button">Submit</button>
             </Form>
