@@ -75,15 +75,19 @@ h1 {
 
 .correct {
   background: green;
+  border-radius: 7px;
   align-items: center;
-  height: 50px;
+  width: 275px;
+  height: 47px;
   display: flex;
 }
 
 .incorrect {
   background: red;
+  border-radius: 7px;
   align-items: center;
-  height: 50px;
+  width: 275px;
+  height: 47px;
   display: flex;
 }
 

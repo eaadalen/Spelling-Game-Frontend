@@ -12,15 +12,19 @@ $color: rgb(0, 0, 0);
 }
 
 .correct {
+	border-radius: 7px;
 	background: green;
-	height: 50px;
+	height: 47px;
+	width: 275px;
 	display: flex;
     align-items: center;
 }
 
 .incorrect {
+	border-radius: 7px;
 	background: red;
-	height: 50px;
+	height: 47px;
+	width: 275px;
 	display: flex;
     align-items: center;
 }
