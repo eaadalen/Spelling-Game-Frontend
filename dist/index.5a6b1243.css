@@ -82,6 +82,9 @@ h1 {
 
 .incorrect {
   background: red;
+  align-items: center;
+  height: 50px;
+  display: flex;
 }
 
 .checkmark {

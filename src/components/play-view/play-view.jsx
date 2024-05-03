@@ -2,6 +2,7 @@ import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import checkmark from '../../../media/checkmark.svg';
+import { setTimeout } from "timers/promises";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
@@ -10,6 +11,8 @@ export const PlayView = () => {
     const [strikes, setStrikes] = useState(1);
     const [score, setScore] = useState(100);
     const [streak, setStreak] = useState(1);
+    const [isCorrectOpen, setIsCorrectOpen] = useState(false);
+    const [isIncorrectOpen, setIsIncorrectOpen] = useState(false);
 
     useEffect(() => {
       getSound();
@@ -61,9 +64,11 @@ export const PlayView = () => {
       sound.play()
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    async function handleSubmit() {
         if (spelling == word[0]) {
+          setIsCorrectOpen(true)
+          await setTimeout(2000)
+          setIsCorrectOpen(false)
           if (streak < 3) {
             setScore(score + 100)
           }
@@ -80,6 +85,9 @@ export const PlayView = () => {
           getSound();
         }
         else {
+          setIsIncorrectOpen(true)
+          await setTimeout(2000)
+          setIsIncorrectOpen(false)
           setStrikes(strikes + 1)
           setStreak(1)
           if (strikes > 2) {
@@ -93,12 +101,6 @@ export const PlayView = () => {
           }
         }
       };
-
-    const [isOpen, setIsOpen] = useState(false);
-  
-    function toggle() {
-      setIsOpen((isOpen) => !isOpen);
-    }
   
   return (
     <div className="container">
@@ -107,16 +109,26 @@ export const PlayView = () => {
             <Form onSubmit={handleSubmit}>
                 <p></p>
                 <div>
-                  {isOpen && <div className="correct"><img src={checkmark} className="checkmark"/></div>}
-                  <button onClick={toggle}>Toggle show</button>
-                  <Form.Group>
-                    <Form.Control
-                        type="text"
-                        value={spelling}
-                        onChange={(e) => setSpelling(e.target.value)}
-                        placeholder="Start Typing..."
-                    />
-                  </Form.Group>
+                  {isCorrectOpen && 
+                    <div className="correct">
+                      <img src={checkmark} className="checkmark"/>
+                    </div>
+                  }
+                  {isIncorrectOpen && 
+                    <div className="incorrect">
+                      <img src={checkmark} className="checkmark"/>
+                    </div>
+                  }
+                  {!isCorrectOpen && !isIncorrectOpen &&
+                    <Form.Group>
+                      <Form.Control
+                          type="text"
+                          value={spelling}
+                          onChange={(e) => setSpelling(e.target.value)}
+                          placeholder="Start Typing..."
+                      />
+                    </Form.Group>
+                  }
                 </div>
                 <p></p>
                 <button className="button">Submit</button>

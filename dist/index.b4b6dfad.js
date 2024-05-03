@@ -37136,6 +37136,7 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _checkmarkSvg = require("../../../media/checkmark.svg");
 var _checkmarkSvgDefault = parcelHelpers.interopDefault(_checkmarkSvg);
+var _promises = require("timers/promises");
 var _s = $RefreshSig$();
 const PlayView = ()=>{
     _s();
@@ -37145,6 +37146,8 @@ const PlayView = ()=>{
     const [strikes, setStrikes] = (0, _react.useState)(1);
     const [score, setScore] = (0, _react.useState)(100);
     const [streak, setStreak] = (0, _react.useState)(1);
+    const [isCorrectOpen, setIsCorrectOpen] = (0, _react.useState)(false);
+    const [isIncorrectOpen, setIsIncorrectOpen] = (0, _react.useState)(false);
     (0, _react.useEffect)(()=>{
         getSound();
     }, []);
@@ -37186,9 +37189,11 @@ const PlayView = ()=>{
     const playSound = ()=>{
         sound.play();
     };
-    const handleSubmit = (event)=>{
-        event.preventDefault();
+    async function handleSubmit() {
         if (spelling == word[0]) {
+            setIsCorrectOpen(true);
+            await (0, _promises.setTimeout)(2000);
+            setIsCorrectOpen(false);
             if (streak < 3) setScore(score + 100);
             else if (streak >= 3 && streak < 10) setScore(score + 200);
             else setScore(score + 300);
@@ -37198,6 +37203,9 @@ const PlayView = ()=>{
             console.log("Streak: " + String(streak));
             getSound();
         } else {
+            setIsIncorrectOpen(true);
+            await (0, _promises.setTimeout)(2000);
+            setIsIncorrectOpen(false);
             setStrikes(strikes + 1);
             setStreak(1);
             if (strikes > 2) {
@@ -37209,10 +37217,6 @@ const PlayView = ()=>{
                 getSound();
             }
         }
-    };
-    const [isOpen, setIsOpen] = (0, _react.useState)(false);
-    function toggle() {
-        setIsOpen((isOpen)=>!isOpen);
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
@@ -37226,7 +37230,7 @@ const PlayView = ()=>{
                         children: "Play Sound"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 106,
+                        lineNumber: 108,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -37234,35 +37238,42 @@ const PlayView = ()=>{
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 108,
+                                lineNumber: 110,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 children: [
-                                    isOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    isCorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         className: "correct",
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                             src: (0, _checkmarkSvgDefault.default),
                                             className: "checkmark"
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 110,
-                                            columnNumber: 55
+                                            lineNumber: 114,
+                                            columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 110,
-                                        columnNumber: 30
+                                        lineNumber: 113,
+                                        columnNumber: 21
                                     }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                        onClick: toggle,
-                                        children: "Toggle show"
+                                    isIncorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "incorrect",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                            src: (0, _checkmarkSvgDefault.default),
+                                            className: "checkmark"
+                                        }, void 0, false, {
+                                            fileName: "src/components/play-view/play-view.jsx",
+                                            lineNumber: 119,
+                                            columnNumber: 23
+                                        }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 111,
-                                        columnNumber: 19
+                                        lineNumber: 118,
+                                        columnNumber: 21
                                     }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                    !isCorrectOpen && !isIncorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
                                             type: "text",
                                             value: spelling,
@@ -37270,23 +37281,23 @@ const PlayView = ()=>{
                                             placeholder: "Start Typing..."
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 113,
-                                            columnNumber: 21
+                                            lineNumber: 124,
+                                            columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 112,
-                                        columnNumber: 19
+                                        lineNumber: 123,
+                                        columnNumber: 21
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 109,
+                                lineNumber: 111,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 121,
+                                lineNumber: 133,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -37294,19 +37305,19 @@ const PlayView = ()=>{
                                 children: "Submit"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 122,
+                                lineNumber: 134,
                                 columnNumber: 17
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 107,
+                        lineNumber: 109,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 105,
+                lineNumber: 107,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37316,37 +37327,37 @@ const PlayView = ()=>{
                         children: "Score"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 126,
+                        lineNumber: 138,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "Timer"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 127,
+                        lineNumber: 139,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "Strikes"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 128,
+                        lineNumber: 140,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 125,
+                lineNumber: 137,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/play-view/play-view.jsx",
-        lineNumber: 104,
+        lineNumber: 106,
         columnNumber: 5
     }, undefined);
 };
-_s(PlayView, "aznu0DXDodE3Dl2At2xkeRjZc8Q=");
+_s(PlayView, "WoWBA4ytI3d93lnjzQBtyM8HfSA=");
 _c = PlayView;
 var _c;
 $RefreshReg$(_c, "PlayView");
@@ -37356,7 +37367,7 @@ $RefreshReg$(_c, "PlayView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react":"21dqq","../../../media/checkmark.svg":"7FXXW"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react":"21dqq","../../../media/checkmark.svg":"7FXXW","timers/promises":"jhUEF"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
 module.exports = require("de721ebe66b353f4").getBundleURL("byUka") + "checkmark.48088ee4.svg" + "?" + Date.now();
 
 },{"de721ebe66b353f4":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37393,6 +37404,9 @@ function getOrigin(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
+
+},{}],"jhUEF":[function(require,module,exports) {
+"use strict";
 
 },{}],"lJZlQ":[function() {},{}]},["5qIsR","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
