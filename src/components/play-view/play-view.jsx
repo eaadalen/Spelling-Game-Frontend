@@ -2,6 +2,7 @@ import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import checkmark from '../../../media/checkmark.svg';
+import xmark from '../../../media/xmark.svg';
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
@@ -121,7 +122,7 @@ export const PlayView = () => {
                   }
                   {incorrectOpen && 
                     <div className="incorrect">
-                      <img src={checkmark} className="checkmark"/>
+                      <img src={xmark} className="checkmark"/>
                     </div>
                   }
                   {!correctOpen && !incorrectOpen &&
