@@ -11,8 +11,8 @@ export const PlayView = () => {
     const [strikes, setStrikes] = useState(1);
     const [score, setScore] = useState(100);
     const [streak, setStreak] = useState(1);
-    const [isCorrectOpen, setIsCorrectOpen] = useState(false);
-    const [isIncorrectOpen, setIsIncorrectOpen] = useState(false);
+    const [correctOpen, setCorrectOpen] = useState(false);
+    const [incorrectOpen, setIncorrectOpen] = useState(false);
 
     useEffect(() => {
       getSound();
@@ -64,11 +64,12 @@ export const PlayView = () => {
       sound.play()
     };
 
-    async function handleSubmit() {
+    async function handleSubmit(event) {
+        event.preventDefault();
         if (spelling == word[0]) {
-          setIsCorrectOpen(true)
+          setOpen(true)
           await setTimeout(2000)
-          setIsCorrectOpen(false)
+          setCorrectOpen(false)
           if (streak < 3) {
             setScore(score + 100)
           }
@@ -85,9 +86,9 @@ export const PlayView = () => {
           getSound();
         }
         else {
-          setIsIncorrectOpen(true)
-          await setTimeout(2000)
-          setIsIncorrectOpen(false)
+          setIncorrectOpen(true)
+          await setTimeout(5000);
+          setIncorrectOpen(false)
           setStrikes(strikes + 1)
           setStreak(1)
           if (strikes > 2) {
@@ -106,20 +107,20 @@ export const PlayView = () => {
     <div className="container">
         <div className="sub-container">
           <button className="button" onClick={playSound}>Play Sound</button>
-            <Form onSubmit={handleSubmit}>
+            <Form>
                 <p></p>
                 <div>
-                  {isCorrectOpen && 
+                  {correctOpen && 
                     <div className="correct">
                       <img src={checkmark} className="checkmark"/>
                     </div>
                   }
-                  {isIncorrectOpen && 
+                  {incorrectOpen && 
                     <div className="incorrect">
                       <img src={checkmark} className="checkmark"/>
                     </div>
                   }
-                  {!isCorrectOpen && !isIncorrectOpen &&
+                  {!correctOpen && !incorrectOpen &&
                     <Form.Group>
                       <Form.Control
                           type="text"
@@ -131,7 +132,7 @@ export const PlayView = () => {
                   }
                 </div>
                 <p></p>
-                <button className="button">Submit</button>
+                <button className="button" onClick={handleSubmit}>Submit</button>
             </Form>
         </div>
         <div className="sub-container">
