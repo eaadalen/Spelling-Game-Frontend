@@ -3,14 +3,18 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import checkmark from '../../../media/checkmark.svg';
 import xmark from '../../../media/xmark.svg';
+import fire_0_3 from '../../../media/fire-0-3.png';
+import fire_1_3 from '../../../media/fire-1-3.png';
+import fire_2_3 from '../../../media/fire-2-3.png';
+import fire_3_3 from '../../../media/fire-3-3.png';
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
     const [word, setWord] = useState("");
     const [sound, setSound] = useState();
-    const [strikes, setStrikes] = useState(1);
-    const [score, setScore] = useState(100);
-    const [streak, setStreak] = useState(1);
+    const [strikes, setStrikes] = useState(0);
+    const [score, setScore] = useState(0);
+    const [streak, setStreak] = useState(0);
     const [correctOpen, setCorrectOpen] = useState(false);
     const [incorrectOpen, setIncorrectOpen] = useState(false);
 
@@ -61,6 +65,7 @@ export const PlayView = () => {
     };
 
     const playSound = () => {
+      console.log(word)
       sound.play()
     };
 
@@ -70,7 +75,6 @@ export const PlayView = () => {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(word)
         if (spelling == word) {
           setCorrectOpen(true)
           await sleep(1000)
@@ -78,11 +82,14 @@ export const PlayView = () => {
           if (streak < 3) {
             setScore(score + 100)
           }
-          else if (streak >= 3 && streak < 10) {
+          else if (streak >= 3 && streak < 6) {
             setScore(score + 200)
           }
-          else {
+          else if (streak >= 6 && streak < 9) {
             setScore(score + 300)
+          }
+          else {
+            setScore(score + 500)
           }
           setStreak(streak + 1)
           console.log("Correct!")
@@ -96,7 +103,7 @@ export const PlayView = () => {
           setIncorrectOpen(false)
           setStrikes(strikes + 1)
           setStreak(1)
-          if (strikes > 2) {
+          if (strikes > 1) {
             console.log("Strikes: " + String(strikes))
             console.log("Game Over!")
           }
@@ -142,9 +149,17 @@ export const PlayView = () => {
             </Form>
         </div>
         <div className="sub-container">
-            <p>Score</p>
-            <p>Timer</p>
-            <p>Strikes</p>
+            <div className="counter">Score: {score}</div>
+            <div className="counter">
+              <div className="streak">Streak</div>
+              <div className="fire">
+                <img src={fire_0_3}/>
+                <img src={fire_1_3}/>
+                <img src={fire_2_3}/>
+                <img src={fire_3_3}/>
+              </div>
+              </div>
+            <div className="counter">Strikes: {strikes}</div>
         </div>
     </div>
   );

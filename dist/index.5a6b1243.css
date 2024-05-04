@@ -97,6 +97,28 @@ h1 {
   display: block;
 }
 
+.fire {
+  display: flex;
+}
+
+.counter {
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 15px;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  font-family: Arial;
+  font-size: 20px;
+  display: flex;
+}
+
+.streak {
+  justify-content: center;
+  display: flex;
+}
+
 .sub-container {
   padding: 100px;
 }

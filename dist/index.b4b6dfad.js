@@ -37138,15 +37138,23 @@ var _checkmarkSvg = require("../../../media/checkmark.svg");
 var _checkmarkSvgDefault = parcelHelpers.interopDefault(_checkmarkSvg);
 var _xmarkSvg = require("../../../media/xmark.svg");
 var _xmarkSvgDefault = parcelHelpers.interopDefault(_xmarkSvg);
+var _fire03Png = require("../../../media/fire-0-3.png");
+var _fire03PngDefault = parcelHelpers.interopDefault(_fire03Png);
+var _fire13Png = require("../../../media/fire-1-3.png");
+var _fire13PngDefault = parcelHelpers.interopDefault(_fire13Png);
+var _fire23Png = require("../../../media/fire-2-3.png");
+var _fire23PngDefault = parcelHelpers.interopDefault(_fire23Png);
+var _fire33Png = require("../../../media/fire-3-3.png");
+var _fire33PngDefault = parcelHelpers.interopDefault(_fire33Png);
 var _s = $RefreshSig$();
 const PlayView = ()=>{
     _s();
     const [spelling, setSpelling] = (0, _react.useState)("");
     const [word, setWord] = (0, _react.useState)("");
     const [sound, setSound] = (0, _react.useState)();
-    const [strikes, setStrikes] = (0, _react.useState)(1);
-    const [score, setScore] = (0, _react.useState)(100);
-    const [streak, setStreak] = (0, _react.useState)(1);
+    const [strikes, setStrikes] = (0, _react.useState)(0);
+    const [score, setScore] = (0, _react.useState)(0);
+    const [streak, setStreak] = (0, _react.useState)(0);
     const [correctOpen, setCorrectOpen] = (0, _react.useState)(false);
     const [incorrectOpen, setIncorrectOpen] = (0, _react.useState)(false);
     (0, _react.useEffect)(()=>{
@@ -37188,6 +37196,7 @@ const PlayView = ()=>{
         await create_sound_URL(random_word, calc_soundID);
     }
     const playSound = ()=>{
+        console.log(word);
         sound.play();
     };
     function sleep(ms) {
@@ -37195,14 +37204,14 @@ const PlayView = ()=>{
     }
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(word);
         if (spelling == word) {
             setCorrectOpen(true);
             await sleep(1000);
             setCorrectOpen(false);
             if (streak < 3) setScore(score + 100);
-            else if (streak >= 3 && streak < 10) setScore(score + 200);
-            else setScore(score + 300);
+            else if (streak >= 3 && streak < 6) setScore(score + 200);
+            else if (streak >= 6 && streak < 9) setScore(score + 300);
+            else setScore(score + 500);
             setStreak(streak + 1);
             console.log("Correct!");
             console.log("Score: " + String(score));
@@ -37214,7 +37223,7 @@ const PlayView = ()=>{
             setIncorrectOpen(false);
             setStrikes(strikes + 1);
             setStreak(1);
-            if (strikes > 2) {
+            if (strikes > 1) {
                 console.log("Strikes: " + String(strikes));
                 console.log("Game Over!");
             } else {
@@ -37237,14 +37246,14 @@ const PlayView = ()=>{
                         children: "Play Sound"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 115,
+                        lineNumber: 122,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 117,
+                                lineNumber: 124,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37256,12 +37265,12 @@ const PlayView = ()=>{
                                             className: "checkmark"
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 121,
+                                            lineNumber: 128,
                                             columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 120,
+                                        lineNumber: 127,
                                         columnNumber: 21
                                     }, undefined),
                                     incorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37271,12 +37280,12 @@ const PlayView = ()=>{
                                             className: "checkmark"
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 126,
+                                            lineNumber: 133,
                                             columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 125,
+                                        lineNumber: 132,
                                         columnNumber: 21
                                     }, undefined),
                                     !correctOpen && !incorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -37287,23 +37296,23 @@ const PlayView = ()=>{
                                             placeholder: "Start Typing..."
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 131,
+                                            lineNumber: 138,
                                             columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 130,
+                                        lineNumber: 137,
                                         columnNumber: 21
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 118,
+                                lineNumber: 125,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 140,
+                                lineNumber: 147,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -37312,59 +37321,114 @@ const PlayView = ()=>{
                                 children: "Submit"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 141,
+                                lineNumber: 148,
                                 columnNumber: 17
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 116,
+                        lineNumber: 123,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 114,
+                lineNumber: 121,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "sub-container",
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "Score"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "counter",
+                        children: [
+                            "Score: ",
+                            score
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 145,
+                        lineNumber: 152,
                         columnNumber: 13
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "Timer"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "counter",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "streak",
+                                children: "Streak"
+                            }, void 0, false, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 154,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "fire",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        src: (0, _fire03PngDefault.default)
+                                    }, void 0, false, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 156,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        src: (0, _fire13PngDefault.default)
+                                    }, void 0, false, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 157,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        src: (0, _fire23PngDefault.default)
+                                    }, void 0, false, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 158,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        src: (0, _fire33PngDefault.default)
+                                    }, void 0, false, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 159,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 155,
+                                columnNumber: 15
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 146,
+                        lineNumber: 153,
                         columnNumber: 13
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "Strikes"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "counter",
+                        children: [
+                            "Strikes: ",
+                            strikes
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 147,
+                        lineNumber: 162,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 144,
+                lineNumber: 151,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/play-view/play-view.jsx",
-        lineNumber: 113,
+        lineNumber: 120,
         columnNumber: 5
     }, undefined);
 };
-_s(PlayView, "bkKsS0fCcwSRi2ov/Vo0/vFopb4=");
+_s(PlayView, "xgR5+qAFfiREXNKS0TJg38BM0XM=");
 _c = PlayView;
 var _c;
 $RefreshReg$(_c, "PlayView");
@@ -37374,7 +37438,7 @@ $RefreshReg$(_c, "PlayView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react":"21dqq","../../../media/checkmark.svg":"7FXXW","../../../media/xmark.svg":"cH1zN"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Form":"iBZ80","react":"21dqq","../../../media/checkmark.svg":"7FXXW","../../../media/xmark.svg":"cH1zN","../../../media/fire-0-3.png":"avEMf","../../../media/fire-1-3.png":"6xzwk","../../../media/fire-2-3.png":"5bRrh","../../../media/fire-3-3.png":"kVWdN"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
 module.exports = require("de721ebe66b353f4").getBundleURL("byUka") + "checkmark.48088ee4.svg" + "?" + Date.now();
 
 },{"de721ebe66b353f4":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37415,6 +37479,18 @@ exports.getOrigin = getOrigin;
 },{}],"cH1zN":[function(require,module,exports) {
 module.exports = require("80c4d9948af76d6e").getBundleURL("byUka") + "xmark.8c831801.svg" + "?" + Date.now();
 
-},{"80c4d9948af76d6e":"lgJ39"}],"lJZlQ":[function() {},{}]},["5qIsR","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"80c4d9948af76d6e":"lgJ39"}],"avEMf":[function(require,module,exports) {
+module.exports = require("f1d2db69caf9a2f7").getBundleURL("byUka") + "fire-0-3.91932df0.png" + "?" + Date.now();
+
+},{"f1d2db69caf9a2f7":"lgJ39"}],"6xzwk":[function(require,module,exports) {
+module.exports = require("8ffda57f74732726").getBundleURL("byUka") + "fire-1-3.9c92737e.png" + "?" + Date.now();
+
+},{"8ffda57f74732726":"lgJ39"}],"5bRrh":[function(require,module,exports) {
+module.exports = require("cc0d4ef91c8b111d").getBundleURL("byUka") + "fire-2-3.3bf275ef.png" + "?" + Date.now();
+
+},{"cc0d4ef91c8b111d":"lgJ39"}],"kVWdN":[function(require,module,exports) {
+module.exports = require("986f1c87ec667b45").getBundleURL("byUka") + "fire-3-3.576a5449.png" + "?" + Date.now();
+
+},{"986f1c87ec667b45":"lgJ39"}],"lJZlQ":[function() {},{}]},["5qIsR","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
