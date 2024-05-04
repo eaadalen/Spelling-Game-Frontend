@@ -153,10 +153,10 @@ export const PlayView = () => {
             <div className="counter">
               <div className="streak">Streak</div>
               <div className="fire">
-                <img src={fire_0_3}/>
-                <img src={fire_1_3}/>
-                <img src={fire_2_3}/>
-                <img src={fire_3_3}/>
+                <img src={fire_0_3} height="30"/>
+                <img src={fire_1_3} height="30"/>
+                <img src={fire_2_3} height="30"/>
+                <img src={fire_3_3} height="30"/>
               </div>
               </div>
             <div className="counter">Strikes: {strikes}</div>

@@ -37365,28 +37365,32 @@ const PlayView = ()=>{
                                 className: "fire",
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                        src: (0, _fire03PngDefault.default)
+                                        src: (0, _fire03PngDefault.default),
+                                        height: "30"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
                                         lineNumber: 156,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                        src: (0, _fire13PngDefault.default)
+                                        src: (0, _fire13PngDefault.default),
+                                        height: "30"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
                                         lineNumber: 157,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                        src: (0, _fire23PngDefault.default)
+                                        src: (0, _fire23PngDefault.default),
+                                        height: "30"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
                                         lineNumber: 158,
                                         columnNumber: 17
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                        src: (0, _fire33PngDefault.default)
+                                        src: (0, _fire33PngDefault.default),
+                                        height: "30"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
                                         lineNumber: 159,
