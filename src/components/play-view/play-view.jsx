@@ -51,14 +51,12 @@ export const PlayView = () => {
       fetch(sound_url)
       .then(res => res.blob())
       .then((myBlob) => {
-          console.log(sound_url)
           const objectURL = URL.createObjectURL(myBlob);
           const newAudioURL = objectURL;
           var a = new Audio(newAudioURL);
           setSound(a);
       })
       .catch(err => {
-        console.log('caught it!',err);
         getSound();
         return 0
       })
@@ -148,10 +146,6 @@ export const PlayView = () => {
             setScore(score + 500)
           }
           setStreak(streak + 1)
-          setFire(streak + 1)
-          console.log("Correct!")
-          console.log("Score: " + String(score))
-          console.log("Streak: " + String(streak))
           getSound();
         }
         else {
@@ -159,17 +153,11 @@ export const PlayView = () => {
           await sleep(1000)
           setIncorrectOpen(false)
           setStrikes(strikes + 1)
-          setStreak(1)
-          if (strikes > 1) {
-            console.log("Strikes: " + String(strikes))
-            console.log("Game Over!")
-          }
-          else {
-            console.log("Incorrect!")
-            console.log("Strikes: " + String(strikes))
+          if (strikes <= 1) {
             getSound();
           }
         }
+        setFire(streak)
         setSpelling("")
       };
   
