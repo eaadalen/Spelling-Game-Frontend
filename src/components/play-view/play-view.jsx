@@ -7,7 +7,6 @@ import fire_0_3 from '../../../media/fire-0-3.png';
 import fire_1_3 from '../../../media/fire-1-3.png';
 import fire_2_3 from '../../../media/fire-2-3.png';
 import fire_3_3 from '../../../media/fire-3-3.png';
-import * as fs from 'fs';
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
@@ -21,29 +20,18 @@ export const PlayView = () => {
     const [fire_pic1, setfire_pic1] = useState(fire_0_3);
     const [fire_pic2, setfire_pic2] = useState(false);
     const [fire_pic3, setfire_pic3] = useState(false);
-    const fs = require('fs');
+    const csv = require("csv-parse")
 
     useEffect(() => {
       getSound();
     }, []);
-
-    const generateWordBank = (validated_word) => {
-      const content = String(validated_word) + ",";
-      fs.appendFile('wordbank.txt', content, (err) => {
-        if (err) {
-          console.error('Error writing to the file: ' + err);
-          return;
-        }
-        getSound()
-      });
-    };
 
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
       return response_json
 
-      
+
     }
 
     async function getSoundID(random) {
@@ -85,7 +73,6 @@ export const PlayView = () => {
       const random_word = await generateWord()
       const calc_soundID = await getSoundID(random_word)
       await create_sound_URL(random_word, calc_soundID)
-      generateWordBank(random_word)
     };
 
     function sleep(ms) {
@@ -174,7 +161,7 @@ export const PlayView = () => {
           setStrikes(strikes + 1)
           setStreak(1)
           setFire(0)
-          if (strikes <= 20) {
+          if (strikes <= 2) {
             getSound();
           }
         }
