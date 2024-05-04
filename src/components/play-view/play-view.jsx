@@ -17,11 +17,17 @@ export const PlayView = () => {
     const [streak, setStreak] = useState(0);
     const [correctOpen, setCorrectOpen] = useState(false);
     const [incorrectOpen, setIncorrectOpen] = useState(false);
+    const [fire_1, setfire_1] = useState(true);
+    const [fire_2, setfire_2] = useState(false);
+    const [fire_3, setfire_3] = useState(false);
+    const [fire_pic1, setfire_pic1] = useState(fire_0_3);
+    const [fire_pic2, setfire_pic2] = useState(fire_0_3);
+    const [fire_pic3, setfire_pic3] = useState(fire_0_3);
 
     useEffect(() => {
       getSound();
     }, []);
-    
+
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
@@ -64,14 +70,64 @@ export const PlayView = () => {
       await create_sound_URL(random_word, calc_soundID);
     };
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     const playSound = () => {
       console.log(word)
       sound.play()
     };
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    const setFire = (fire_streak) => {
+      switch(fire_streak) {
+        case 0:
+          setfire_pic1(fire_0_3)
+          setfire_2(false)
+          setfire_3(false)
+          break;
+        case 1:
+          setfire_pic1(fire_1_3)
+          break;
+        case 2:
+          setfire_pic1(fire_2_3)
+          break;
+        case 3:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_0_3)
+          setfire_2(true)
+          break;
+        case 4:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_1_3)
+          break;
+        case 5:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_2_3)
+          break;
+        case 6:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_3_3)
+          setfire_pic3(fire_0_3)
+          setfire_3(true)
+          break;
+        case 7:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_3_3)
+          setfire_pic3(fire_1_3)
+          break;
+        case 8:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_3_3)
+          setfire_pic3(fire_2_3)
+          break;
+        case 9:
+          setfire_pic1(fire_3_3)
+          setfire_pic2(fire_3_3)
+          setfire_pic3(fire_3_3)
+          break;
+      }
+    };
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -92,6 +148,7 @@ export const PlayView = () => {
             setScore(score + 500)
           }
           setStreak(streak + 1)
+          setFire(streak + 1)
           console.log("Correct!")
           console.log("Score: " + String(score))
           console.log("Streak: " + String(streak))
@@ -152,11 +209,25 @@ export const PlayView = () => {
             <div className="counter">Score: {score}</div>
             <div className="counter">
               <div className="streak">Streak</div>
-              <div className="fire">
-                <img src={fire_0_3} height="30"/>
-                <img src={fire_1_3} height="30"/>
-                <img src={fire_2_3} height="30"/>
-                <img src={fire_3_3} height="30"/>
+              <div>
+                {fire_1 && !fire_2 && !fire_3 &&
+                  <div>
+                    <img src={fire_pic1} height="30"/>
+                  </div>
+                }
+                {fire_1 && fire_2 && !fire_3 &&
+                  <div>
+                    <img src={fire_pic1} height="30"/>
+                    <img src={fire_pic2} height="30"/>
+                  </div>
+                }
+                {fire_1 && fire_2 && fire_3 &&
+                  <div>
+                    <img src={fire_pic1} height="30"/>
+                    <img src={fire_pic2} height="30"/>
+                    <img src={fire_pic3} height="30"/>
+                  </div>
+                }
               </div>
               </div>
             <div className="counter">Strikes: {strikes}</div>

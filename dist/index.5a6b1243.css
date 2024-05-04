@@ -97,10 +97,6 @@ h1 {
   display: block;
 }
 
-.fire {
-  display: flex;
-}
-
 .counter {
   color: #fff;
   background-color: #000;
