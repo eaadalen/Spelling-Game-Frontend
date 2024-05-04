@@ -36,8 +36,15 @@ export const PlayView = () => {
       const response = await fetch(dict_url)
       const response_json = await response.json()
       try {
-        setWord(String(response_json[0]["meta"]["stems"][0]))
-        return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
+        var temp_word = response_json[0]["meta"]["id"]
+        if (temp_word.includes("-") == false && 
+            temp_word.includes(":") == false && 
+            temp_word.includes(" ") == false && 
+            /\d/.test(temp_word) == false) {
+          setWord(String(response_json[0]["meta"]["id"]).toLowerCase())
+          return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
+        }
+        getSound();
       } catch (error) {
         getSound();
       }
@@ -45,6 +52,7 @@ export const PlayView = () => {
 
     async function create_sound_URL(raw_word, soundID) {
       var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word[0].charAt(0) + "/" + soundID + ".mp3";
+      console.log(sound_url)
       fetch(sound_url)
       .then(res => res.blob())
       .then((myBlob) => {
@@ -152,7 +160,7 @@ export const PlayView = () => {
           setStrikes(strikes + 1)
           setStreak(1)
           setFire(0)
-          if (strikes <= 2) {
+          if (strikes <= 20) {
             getSound();
           }
         }
