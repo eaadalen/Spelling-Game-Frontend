@@ -112,6 +112,7 @@ h1 {
 
 .streak {
   justify-content: center;
+  width: 125px;
   display: flex;
 }
 

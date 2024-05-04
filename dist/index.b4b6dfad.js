@@ -37158,8 +37158,8 @@ const PlayView = ()=>{
     const [correctOpen, setCorrectOpen] = (0, _react.useState)(false);
     const [incorrectOpen, setIncorrectOpen] = (0, _react.useState)(false);
     const [fire_pic1, setfire_pic1] = (0, _react.useState)((0, _fire03PngDefault.default));
-    const [fire_pic2, setfire_pic2] = (0, _react.useState)((0, _fire03PngDefault.default));
-    const [fire_pic3, setfire_pic3] = (0, _react.useState)((0, _fire03PngDefault.default));
+    const [fire_pic2, setfire_pic2] = (0, _react.useState)(false);
+    const [fire_pic3, setfire_pic3] = (0, _react.useState)(false);
     (0, _react.useEffect)(()=>{
         getSound();
     }, []);
@@ -37515,7 +37515,7 @@ const PlayView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(PlayView, "EMvjOIuLZbJjdeAkfRo5ccef5hc=");
+_s(PlayView, "7YJfpdww+YW4TJsU58kbBbuWqyY=");
 _c = PlayView;
 var _c;
 $RefreshReg$(_c, "PlayView");

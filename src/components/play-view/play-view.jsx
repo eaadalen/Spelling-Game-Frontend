@@ -18,8 +18,8 @@ export const PlayView = () => {
     const [correctOpen, setCorrectOpen] = useState(false);
     const [incorrectOpen, setIncorrectOpen] = useState(false);
     const [fire_pic1, setfire_pic1] = useState(fire_0_3);
-    const [fire_pic2, setfire_pic2] = useState(fire_0_3);
-    const [fire_pic3, setfire_pic3] = useState(fire_0_3);
+    const [fire_pic2, setfire_pic2] = useState(false);
+    const [fire_pic3, setfire_pic3] = useState(false);
 
     useEffect(() => {
       getSound();
