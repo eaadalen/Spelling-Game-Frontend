@@ -12,14 +12,11 @@ export const PlayView = () => {
     const [spelling, setSpelling] = useState("");
     const [word, setWord] = useState("");
     const [sound, setSound] = useState();
-    const [strikes, setStrikes] = useState(0);
-    const [score, setScore] = useState(0);
-    const [streak, setStreak] = useState(0);
+    const [strikes, setStrikes] = useState(1);
+    const [score, setScore] = useState(100);
+    const [streak, setStreak] = useState(1);
     const [correctOpen, setCorrectOpen] = useState(false);
     const [incorrectOpen, setIncorrectOpen] = useState(false);
-    const [fire_1, setfire_1] = useState(true);
-    const [fire_2, setfire_2] = useState(false);
-    const [fire_3, setfire_3] = useState(false);
     const [fire_pic1, setfire_pic1] = useState(fire_0_3);
     const [fire_pic2, setfire_pic2] = useState(fire_0_3);
     const [fire_pic3, setfire_pic3] = useState(fire_0_3);
@@ -78,11 +75,12 @@ export const PlayView = () => {
     };
 
     const setFire = (fire_streak) => {
+      console.log(fire_streak)
       switch(fire_streak) {
         case 0:
           setfire_pic1(fire_0_3)
-          setfire_2(false)
-          setfire_3(false)
+          setfire_pic2(false)
+          setfire_pic3(false)
           break;
         case 1:
           setfire_pic1(fire_1_3)
@@ -93,7 +91,6 @@ export const PlayView = () => {
         case 3:
           setfire_pic1(fire_3_3)
           setfire_pic2(fire_0_3)
-          setfire_2(true)
           break;
         case 4:
           setfire_pic1(fire_3_3)
@@ -107,7 +104,6 @@ export const PlayView = () => {
           setfire_pic1(fire_3_3)
           setfire_pic2(fire_3_3)
           setfire_pic3(fire_0_3)
-          setfire_3(true)
           break;
         case 7:
           setfire_pic1(fire_3_3)
@@ -133,19 +129,20 @@ export const PlayView = () => {
           setCorrectOpen(true)
           await sleep(1000)
           setCorrectOpen(false)
-          if (streak < 3) {
+          if (streak < 4) {
             setScore(score + 100)
           }
-          else if (streak >= 3 && streak < 6) {
+          else if (streak >= 4 && streak < 7) {
             setScore(score + 200)
           }
-          else if (streak >= 6 && streak < 9) {
+          else if (streak >= 7 && streak < 10) {
             setScore(score + 300)
           }
           else {
             setScore(score + 500)
           }
           setStreak(streak + 1)
+          setFire(streak)
           getSound();
         }
         else {
@@ -153,11 +150,12 @@ export const PlayView = () => {
           await sleep(1000)
           setIncorrectOpen(false)
           setStrikes(strikes + 1)
-          if (strikes <= 1) {
+          setStreak(1)
+          setFire(0)
+          if (strikes <= 2) {
             getSound();
           }
         }
-        setFire(streak)
         setSpelling("")
       };
   
@@ -194,22 +192,22 @@ export const PlayView = () => {
             </Form>
         </div>
         <div className="sub-container">
-            <div className="counter">Score: {score}</div>
+            <div className="counter">Score: {score-100}</div>
             <div className="counter">
               <div className="streak">Streak</div>
               <div>
-                {fire_1 && !fire_2 && !fire_3 &&
+                {fire_pic1 && !fire_pic2 && !fire_pic3 &&
                   <div>
                     <img src={fire_pic1} height="30"/>
                   </div>
                 }
-                {fire_1 && fire_2 && !fire_3 &&
+                {fire_pic1 && fire_pic2 && !fire_pic3 &&
                   <div>
                     <img src={fire_pic1} height="30"/>
                     <img src={fire_pic2} height="30"/>
                   </div>
                 }
-                {fire_1 && fire_2 && fire_3 &&
+                {fire_pic1 && fire_pic2 && fire_pic3 &&
                   <div>
                     <img src={fire_pic1} height="30"/>
                     <img src={fire_pic2} height="30"/>
@@ -218,7 +216,7 @@ export const PlayView = () => {
                 }
               </div>
               </div>
-            <div className="counter">Strikes: {strikes}</div>
+            <div className="counter">Strikes: {strikes-1}</div>
         </div>
     </div>
   );
