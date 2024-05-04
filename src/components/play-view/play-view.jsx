@@ -21,7 +21,6 @@ export const PlayView = () => {
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
-      setWord(response_json)
       return response_json
     }
 
@@ -30,6 +29,7 @@ export const PlayView = () => {
       const response = await fetch(dict_url)
       const response_json = await response.json()
       try {
+        setWord(String(response_json[0]["meta"]["stems"][0]))
         return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
       } catch (error) {
         getSound();
@@ -70,7 +70,8 @@ export const PlayView = () => {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        if (spelling == word[0]) {
+        console.log(word)
+        if (spelling == word) {
           setCorrectOpen(true)
           await sleep(1000)
           setCorrectOpen(false)
