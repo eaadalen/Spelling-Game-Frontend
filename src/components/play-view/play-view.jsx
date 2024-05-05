@@ -23,14 +23,7 @@ export const PlayView = () => {
 
     useEffect(() => {
       getSound()
-      document.addEventListener('keydown', detectKeyDown, true)
     }, [])
-
-    const detectKeyDown = (e) => {
-      if (e.key === " ") {
-        sound.play()
-      }
-    }
 
     const generateWordBank = (validated_word) => {
       const data = {
@@ -196,6 +189,13 @@ export const PlayView = () => {
         }
         setSpelling("")
     }
+
+    const handler = (e) => {
+      if (e.key === " ") {
+        sound.play()
+        setSpelling("")
+      }
+    }
   
   return (
     <div className="container">
@@ -221,6 +221,7 @@ export const PlayView = () => {
                         value={spelling}
                         onChange={(e) => setSpelling(e.target.value)}
                         placeholder="Start Typing..."
+                        onKeyPress={(e) => handler(e)}
                     />
                   </Form.Group>
                 }
