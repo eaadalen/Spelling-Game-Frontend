@@ -39,21 +39,7 @@ export const PlayView = () => {
           },
           body: JSON.stringify(data)
         }
-      ).then((response) => {
-        if (response.ok) {
-          //window.location.reload();
-        } else {
-          alert("Info Update Failed");
-        }
-      });
-
-      //getSound()
-    }
-
-    async function generateWord() {
-      const response = await fetch("https://random-word-api.herokuapp.com/word")
-      const response_json = await response.json()
-      return response_json[0]
+      )
     }
 
     async function generateValidatedWord() {
@@ -62,6 +48,13 @@ export const PlayView = () => {
       return response_json[0]["Spelling"]
     }
 
+
+    async function generateWord() {
+      const response = await fetch("https://random-word-api.herokuapp.com/word")
+      const response_json = await response.json()
+      return response_json[0]
+    }
+    
     async function getSoundID(random) {
       var dict_url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + random + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
       const response = await fetch(dict_url)
@@ -76,6 +69,7 @@ export const PlayView = () => {
             return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
         }
       } catch (error) {
+        return undefined
       }
     }
 
@@ -89,18 +83,15 @@ export const PlayView = () => {
             const newAudioURL = objectURL;
             var a = new Audio(newAudioURL);
             setSound(a);
-            if (soundID != undefined) {
-              //generateWordBank(raw_word)
-          }
+            //generateWordBank(raw_word)
         })
         .catch(err => {
-          console.log(err)
         })
       }
     }
 
     async function getSound() {
-      const random_word = await generateWord()
+      const random_word = await generateValidatedWord()
       const calc_soundID = await getSoundID(random_word)
       await create_sound_URL(random_word, calc_soundID)
     };
@@ -110,7 +101,6 @@ export const PlayView = () => {
     }
 
     const playSound = () => {
-      console.log(word)
       sound.play()
     };
 
