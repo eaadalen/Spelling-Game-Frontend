@@ -20,16 +20,37 @@ export const PlayView = () => {
     const [fire_pic1, setfire_pic1] = useState(fire_0_3);
     const [fire_pic2, setfire_pic2] = useState(false);
     const [fire_pic3, setfire_pic3] = useState(false);
-    const wordBank = []
-    const csv = require("csv-parse")
 
     useEffect(() => {
       getSound();
     }, []);
 
     const generateWordBank = (validated_word) => {
-      wordBank.push(validated_word)
-  };
+      const data = {
+        Spelling: validated_word[0]
+      }
+
+      console.log(data)
+      
+      fetch(
+        "https://spelling-game-ef1de28a171a.herokuapp.com/words",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        }
+      ).then((response) => {
+        if (response.ok) {
+          //window.location.reload();
+        } else {
+          alert("Info Update Failed");
+        }
+      });
+
+      getSound()
+    }
 
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
