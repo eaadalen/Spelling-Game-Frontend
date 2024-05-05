@@ -14,16 +14,13 @@ const generateWordBank = (validated_word) => {
 async function generateWord() {
     const response = await fetch("https://random-word-api.herokuapp.com/word")
     const response_json = await response.json()
-    //console.log(response_json[0])
     return response_json
 }
 
 async function getSoundID(random) {
     var dict_url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + random + "?key=aede8a6f-61af-4667-bd27-95b2786bca10";
-    //console.log(dict_url)
     const response = await fetch(dict_url)
     const response_json = await response.json()
-    //console.log(response_json)
     try {
         var temp_word = response_json[0]["meta"]["id"]
         if (temp_word.includes("-") == false && 
@@ -32,9 +29,7 @@ async function getSoundID(random) {
             /\d/.test(temp_word) == false) {
             return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
         }
-
     } catch (error) {
-
     }
 }
 

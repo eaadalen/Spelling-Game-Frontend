@@ -20,18 +20,21 @@ export const PlayView = () => {
     const [fire_pic1, setfire_pic1] = useState(fire_0_3);
     const [fire_pic2, setfire_pic2] = useState(false);
     const [fire_pic3, setfire_pic3] = useState(false);
+    const wordBank = []
     const csv = require("csv-parse")
 
     useEffect(() => {
       getSound();
     }, []);
 
+    const generateWordBank = (validated_word) => {
+      wordBank.push(validated_word)
+  };
+
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
       return response_json
-
-
     }
 
     async function getSoundID(random) {
@@ -44,12 +47,12 @@ export const PlayView = () => {
             temp_word.includes(":") == false && 
             temp_word.includes(" ") == false && 
             /\d/.test(temp_word) == false) {
-          setWord(String(response_json[0]["meta"]["id"]).toLowerCase())
-          return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
+            setWord(String(response_json[0]["meta"]["id"]).toLowerCase())
+            return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
         }
-        getSound();
+        getSound()
       } catch (error) {
-        getSound();
+        getSound()
       }
     }
 
@@ -62,6 +65,9 @@ export const PlayView = () => {
           const newAudioURL = objectURL;
           var a = new Audio(newAudioURL);
           setSound(a);
+          if (soundID != undefined) {
+            generateWordBank(raw_word)
+        }
       })
       .catch(err => {
         getSound();
