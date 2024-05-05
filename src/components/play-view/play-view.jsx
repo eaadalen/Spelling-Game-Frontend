@@ -27,10 +27,8 @@ export const PlayView = () => {
 
     const generateWordBank = (validated_word) => {
       const data = {
-        Spelling: validated_word[0]
+        Spelling: validated_word
       }
-
-      console.log(data)
       
       fetch(
         "https://spelling-game-ef1de28a171a.herokuapp.com/words",
@@ -49,13 +47,19 @@ export const PlayView = () => {
         }
       });
 
-      getSound()
+      //getSound()
     }
 
     async function generateWord() {
       const response = await fetch("https://random-word-api.herokuapp.com/word")
       const response_json = await response.json()
-      return response_json
+      return response_json[0]
+    }
+
+    async function generateValidatedWord() {
+      const response = await fetch("https://spelling-game-ef1de28a171a.herokuapp.com/random")
+      const response_json = await response.json()
+      return response_json[0]["Spelling"]
     }
 
     async function getSoundID(random) {
@@ -71,29 +75,28 @@ export const PlayView = () => {
             setWord(String(response_json[0]["meta"]["id"]).toLowerCase())
             return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
         }
-        getSound()
       } catch (error) {
-        getSound()
       }
     }
 
     async function create_sound_URL(raw_word, soundID) {
-      var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word[0].charAt(0) + "/" + soundID + ".mp3";
-      fetch(sound_url)
-      .then(res => res.blob())
-      .then((myBlob) => {
-          const objectURL = URL.createObjectURL(myBlob);
-          const newAudioURL = objectURL;
-          var a = new Audio(newAudioURL);
-          setSound(a);
-          if (soundID != undefined) {
-            generateWordBank(raw_word)
-        }
-      })
-      .catch(err => {
-        getSound();
-        return 0
-      })
+      if (soundID != undefined) {
+        var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word.charAt(0) + "/" + soundID + ".mp3";
+        fetch(sound_url)
+        .then(res => res.blob())
+        .then((myBlob) => {
+            const objectURL = URL.createObjectURL(myBlob);
+            const newAudioURL = objectURL;
+            var a = new Audio(newAudioURL);
+            setSound(a);
+            if (soundID != undefined) {
+              //generateWordBank(raw_word)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
     }
 
     async function getSound() {
