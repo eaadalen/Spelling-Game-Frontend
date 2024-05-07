@@ -52,15 +52,27 @@
 
 .container {
   text-align: center;
+  flex-direction: row;
   width: 100%;
   margin: 12% auto 0;
   padding-top: 50px;
+  display: flex;
 }
 
-h1 {
+.sub-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.left {
   text-transform: uppercase;
-  margin-bottom: 2rem;
-  font-size: .8rem;
+  margin-bottom: auto;
+  padding-right: 20px;
+  font-size: 2rem;
+}
+
+.right {
+  padding-left: 20px;
 }
 
 .container {

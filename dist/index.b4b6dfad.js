@@ -39395,22 +39395,30 @@ const WelcomeView = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "left",
                 children: "Spelling Survival"
             }, void 0, false, {
                 fileName: "src/components/welcome-view/welcome-view.jsx",
                 lineNumber: 7,
                 columnNumber: 9
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/play`,
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    className: "button",
-                    children: "Start"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "right",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                    to: `/play`,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        className: "button",
+                        children: "Start"
+                    }, void 0, false, {
+                        fileName: "src/components/welcome-view/welcome-view.jsx",
+                        lineNumber: 10,
+                        columnNumber: 15
+                    }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/welcome-view/welcome-view.jsx",
                     lineNumber: 9,
-                    columnNumber: 13
+                    columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/welcome-view/welcome-view.jsx",
