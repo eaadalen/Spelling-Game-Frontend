@@ -7,7 +7,7 @@ import fire_0_3 from '../../../media/fire-0-3.png';
 import fire_1_3 from '../../../media/fire-1-3.png';
 import fire_2_3 from '../../../media/fire-2-3.png';
 import fire_3_3 from '../../../media/fire-3-3.png';
-import { Button, Modal } from 'react-bootstrap'; 
+import { Modal } from 'react-bootstrap'; 
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("")
@@ -97,6 +97,45 @@ export const PlayView = () => {
       await create_sound_URL(random_word, calc_soundID)
     }
 
+    async function handleSubmit(event) {
+      event.preventDefault();
+      if (spelling == word) {
+        setCorrectOpen(true)
+        if (streak < 4) {
+          setScore(score + 100)
+        }
+        else if (streak >= 4 && streak < 7) {
+          setScore(score + 200)
+        }
+        else if (streak >= 7 && streak < 10) {
+          setScore(score + 300)
+        }
+        else {
+          setScore(score + 500)
+        }
+        setStreak(streak + 1)
+        setFire(streak)
+        getSound();
+        await sleep(1000)
+        setCorrectOpen(false)
+      }
+      else {
+        setIncorrectOpen(true)
+        setStrikes(strikes + 1)
+        setStreak(1)
+        setFire(0)
+        if (strikes <= 2) {
+          getSound();
+        }
+        else {
+          toggleModal()
+        }
+        await sleep(1000)
+        setIncorrectOpen(false)
+      }
+      setSpelling("")
+  }
+
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -153,53 +192,6 @@ export const PlayView = () => {
       }
     }
 
-    async function handleSubmit(event) {
-        event.preventDefault();
-        if (spelling == word) {
-          setCorrectOpen(true)
-          if (streak < 4) {
-            setScore(score + 100)
-          }
-          else if (streak >= 4 && streak < 7) {
-            setScore(score + 200)
-          }
-          else if (streak >= 7 && streak < 10) {
-            setScore(score + 300)
-          }
-          else {
-            setScore(score + 500)
-          }
-          setStreak(streak + 1)
-          setFire(streak)
-          getSound();
-          await sleep(1000)
-          setCorrectOpen(false)
-        }
-        else {
-          setIncorrectOpen(true)
-          setStrikes(strikes + 1)
-          setStreak(1)
-          setFire(0)
-          if (strikes <= 2) {
-            getSound();
-          }
-          else {
-            toggleModal()
-          }
-          await sleep(1000)
-          setIncorrectOpen(false)
-        }
-        setSpelling("")
-    }
-
-    const handler = (e) => {
-      if (e.key === " ") {
-        sound.play()
-        setSpelling("")
-        toggleModal()
-      }
-    }
-
     const toggleModal = () => {  
       if (showModal == true) {
         setShowModal(false)
@@ -237,7 +229,6 @@ export const PlayView = () => {
                           value={spelling}
                           onChange={(e) => setSpelling(e.target.value)}
                           placeholder="Start Typing..."
-                          onKeyPress={(e) => handler(e)}
                       />
                     </Form.Group>
                   }
