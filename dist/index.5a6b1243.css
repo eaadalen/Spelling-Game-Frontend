@@ -73,6 +73,28 @@ h1 {
   display: flex;
 }
 
+.sub-container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.modal {
+  margin-top: 18.5%;
+}
+
+.modalContainer {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+.modalSubContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .correct {
   background: green;
   border-radius: 7px;
@@ -114,10 +136,6 @@ h1 {
   justify-content: center;
   width: 125px;
   display: flex;
-}
-
-.sub-container {
-  padding: 100px;
 }
 
 .button {

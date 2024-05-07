@@ -7,6 +7,7 @@ import fire_0_3 from '../../../media/fire-0-3.png';
 import fire_1_3 from '../../../media/fire-1-3.png';
 import fire_2_3 from '../../../media/fire-2-3.png';
 import fire_3_3 from '../../../media/fire-3-3.png';
+import { Button, Modal } from 'react-bootstrap'; 
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("")
@@ -20,6 +21,7 @@ export const PlayView = () => {
     const [fire_pic1, setfire_pic1] = useState(fire_0_3)
     const [fire_pic2, setfire_pic2] = useState(false)
     const [fire_pic3, setfire_pic3] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
       getSound()
@@ -182,7 +184,7 @@ export const PlayView = () => {
             getSound();
           }
           else {
-
+            toggleModal()
           }
           await sleep(1000)
           setIncorrectOpen(false)
@@ -194,69 +196,102 @@ export const PlayView = () => {
       if (e.key === " ") {
         sound.play()
         setSpelling("")
+        toggleModal()
       }
     }
+
+    const toggleModal = () => {  
+      if (showModal == true) {
+        setShowModal(false)
+      }
+      else {
+        setShowModal(true)
+      }
+    }  
+
+    const playAgain = () => {
+      location.reload();
+    }
   
-  return (
-    <div className="container">
-        <div className="sub-container">
-          <button className="button" onClick={playSound}>Play Sound</button>
-          <Form>
-              <p></p>
-              <div>
-                {correctOpen && 
-                  <div className="correct">
-                    <img src={checkmark} className="checkmark"/>
+    return (
+      <div className="container">
+          <div className="sub-container">
+            <button className="button" onClick={playSound}>Play Sound</button>
+            <Form>
+                <p></p>
+                <div>
+                  {correctOpen && 
+                    <div className="correct">
+                      <img src={checkmark} className="checkmark"/>
+                    </div>
+                  }
+                  {incorrectOpen && 
+                    <div className="incorrect">
+                      <img src={xmark} className="checkmark"/>
+                    </div>
+                  }
+                  {!correctOpen && !incorrectOpen &&
+                    <Form.Group>
+                      <Form.Control
+                          type="text"
+                          value={spelling}
+                          onChange={(e) => setSpelling(e.target.value)}
+                          placeholder="Start Typing..."
+                          onKeyPress={(e) => handler(e)}
+                      />
+                    </Form.Group>
+                  }
+                </div>
+                <p></p>
+                <button className="button" onClick={handleSubmit}>Submit</button>
+            </Form>
+          </div>
+          <div className="sub-container">
+              <div className="counter">Score: {score-100}</div>
+              <div className="counter">
+                <div className="streak">Streak</div>
+                <div>
+                  {fire_pic1 && !fire_pic2 && !fire_pic3 &&
+                    <div>
+                      <img src={fire_pic1} height="30"/>
+                    </div>
+                  }
+                  {fire_pic1 && fire_pic2 && !fire_pic3 &&
+                    <div>
+                      <img src={fire_pic1} height="30"/>
+                      <img src={fire_pic2} height="30"/>
+                    </div>
+                  }
+                  {fire_pic1 && fire_pic2 && fire_pic3 &&
+                    <div>
+                      <img src={fire_pic1} height="30"/>
+                      <img src={fire_pic2} height="30"/>
+                      <img src={fire_pic3} height="30"/>
+                    </div>
+                  }
+                </div>
+                </div>
+              <div className="counter">Strikes: {strikes-1}</div>
+          </div>
+          <div>   
+            {showModal &&
+              <Modal show={true} onHide={toggleModal} className="modal">  
+                <Modal.Body className="modalContainer">
+                  <div className="modalSubContainer">
+                    <div>
+                      Game Over!
+                    </div>
+                    <div>
+                      Score: {score-100}
+                    </div> 
                   </div>
-                }
-                {incorrectOpen && 
-                  <div className="incorrect">
-                    <img src={xmark} className="checkmark"/>
+                  <div className="modalSubContainer">
+                    <button className="button" onClick={playAgain}>Play Again?</button>
                   </div>
-                }
-                {!correctOpen && !incorrectOpen &&
-                  <Form.Group>
-                    <Form.Control
-                        type="text"
-                        value={spelling}
-                        onChange={(e) => setSpelling(e.target.value)}
-                        placeholder="Start Typing..."
-                        onKeyPress={(e) => handler(e)}
-                    />
-                  </Form.Group>
-                }
-              </div>
-              <p></p>
-              <button className="button" onClick={handleSubmit}>Submit</button>
-          </Form>
-        </div>
-        <div className="sub-container">
-            <div className="counter">Score: {score-100}</div>
-            <div className="counter">
-              <div className="streak">Streak</div>
-              <div>
-                {fire_pic1 && !fire_pic2 && !fire_pic3 &&
-                  <div>
-                    <img src={fire_pic1} height="30"/>
-                  </div>
-                }
-                {fire_pic1 && fire_pic2 && !fire_pic3 &&
-                  <div>
-                    <img src={fire_pic1} height="30"/>
-                    <img src={fire_pic2} height="30"/>
-                  </div>
-                }
-                {fire_pic1 && fire_pic2 && fire_pic3 &&
-                  <div>
-                    <img src={fire_pic1} height="30"/>
-                    <img src={fire_pic2} height="30"/>
-                    <img src={fire_pic3} height="30"/>
-                  </div>
-                }
-              </div>
-              </div>
-            <div className="counter">Strikes: {strikes-1}</div>
-        </div>
-    </div>
-  )
+                  </Modal.Body>  
+              </Modal> 
+            }
+          </div>   
+      </div>
+    )
 }

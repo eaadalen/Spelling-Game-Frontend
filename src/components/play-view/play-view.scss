@@ -11,6 +11,28 @@ $color: rgb(0, 0, 0);
     text-align: center;
 }
 
+.sub-container {
+    padding-left: 100px;
+	padding-right: 100px;
+}
+
+.modal {
+	margin-top: 18.5%;
+}
+
+.modalContainer {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	margin: 0 auto;
+    text-align: center;
+}
+
+.modalSubContainer {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
 .correct {
 	border-radius: 7px;
 	background: green;
@@ -52,10 +74,6 @@ $color: rgb(0, 0, 0);
 	display: flex;
     justify-content: center;
 	width: 125px;
-}
-
-.sub-container {
-    padding: 100px;
 }
 
 .button {
