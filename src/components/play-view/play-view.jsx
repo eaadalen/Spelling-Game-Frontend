@@ -15,6 +15,7 @@ export const PlayView = () => {
     const [sound, setSound] = useState()
     const [strikes, setStrikes] = useState(1)
     const [score, setScore] = useState(100)
+    const [highScore, setHighScore] = useState("?")
     const [streak, setStreak] = useState(1)
     const [correctOpen, setCorrectOpen] = useState(false)
     const [incorrectOpen, setIncorrectOpen] = useState(false)
@@ -22,6 +23,7 @@ export const PlayView = () => {
     const [fire_pic2, setfire_pic2] = useState(false)
     const [fire_pic3, setfire_pic3] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
       getSound()
@@ -195,6 +197,7 @@ export const PlayView = () => {
     const toggleModal = () => {  
       if (showModal == true) {
         setShowModal(false)
+        location.reload()
       }
       else {
         setShowModal(true)
@@ -275,9 +278,17 @@ export const PlayView = () => {
                     <div>
                       Score: {score-100}
                     </div> 
+                    <div>
+                      High Score: {highScore}
+                    </div>
                   </div>
                   <div className="modalSubContainer">
                     <button className="button" onClick={playAgain}>Play Again?</button>
+                    {!loggedIn &&
+                      <div style={{fontSize: '0.75em'}}>
+                        Log in to view high score
+                      </div>
+                    }
                   </div>
                   </Modal.Body>  
               </Modal> 
