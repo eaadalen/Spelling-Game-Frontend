@@ -39915,7 +39915,8 @@ const PlayView = ()=>{
                                     }, undefined),
                                     !loggedIn && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         style: {
-                                            fontSize: "0.75em"
+                                            fontSize: "0.75em",
+                                            paddingTop: "1em"
                                         },
                                         children: "Log in to view high score"
                                     }, void 0, false, {
