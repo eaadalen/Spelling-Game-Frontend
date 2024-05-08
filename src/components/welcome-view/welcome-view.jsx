@@ -1,4 +1,5 @@
 import "./welcome-view.scss"
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const WelcomeView = () => {

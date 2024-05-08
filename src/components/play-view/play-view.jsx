@@ -1,6 +1,7 @@
 import "./play-view.scss"
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 import checkmark from '../../../media/checkmark.svg';
 import xmark from '../../../media/xmark.svg';
 import fire_0_3 from '../../../media/fire-0-3.png';
@@ -285,9 +286,11 @@ export const PlayView = () => {
                   <div className="modalSubContainer">
                     <button className="button" onClick={playAgain}>Play Again?</button>
                     {!loggedIn &&
-                      <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
-                        Log in to view high score
-                      </div>
+                      <Link to={`/login`} className="loginLink">
+                        <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
+                          Log in to view high score
+                        </div>
+                      </Link>
                     }
                   </div>
                   </Modal.Body>  
