@@ -26997,7 +26997,7 @@ var _playView = require("../play-view/play-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
@@ -40138,20 +40138,26 @@ const SignupView = ({ onLoggedIn })=>{
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then((responseV1)=>responseV1.json()).then((dataV1)=>{
-            fetch("https://desolate-everglades-87695-c2e8310ae46d.herokuapp.com/login?Username=" + String(data.Username) + "&Password=" + String(data.Password), {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then((responseV2)=>responseV2.json()).then((dataV2)=>{
-                localStorage.setItem("user", JSON.stringify(dataV2.user));
-                localStorage.setItem("token", dataV2.token);
-                onLoggedIn(dataV2.user, dataV2.token);
+        }).then((response)=>{
+            if (response.status == 201) response.json().then(()=>{
+                fetch("https://spelling-game-ef1de28a171a.herokuapp.com/login?Username=" + data.Username + "&Password=" + data.Password, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }).then((response)=>response.json()).then((dataV1)=>{
+                    if (dataV1.user) {
+                        localStorage.setItem("user", JSON.stringify(dataV1.user));
+                        localStorage.setItem("token", dataV1.token);
+                        onLoggedIn(dataV1.user, dataV1.token);
+                    } else alert("No such user");
+                }).catch((e)=>{
+                    alert("Something went wrong");
+                    console.log(e);
+                });
             });
-        }).catch((e)=>{
-            alert("Something went wrong");
+            else alert("Username is already taken");
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -40164,7 +40170,7 @@ const SignupView = ({ onLoggedIn })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 53,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -40175,18 +40181,18 @@ const SignupView = ({ onLoggedIn })=>{
                         minLength: "3"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 54,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 52,
+                lineNumber: 67,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 62,
+                lineNumber: 77,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -40196,7 +40202,7 @@ const SignupView = ({ onLoggedIn })=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 64,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -40206,18 +40212,18 @@ const SignupView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
-                        lineNumber: 65,
+                        lineNumber: 80,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 63,
+                lineNumber: 78,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 72,
+                lineNumber: 87,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -40225,13 +40231,13 @@ const SignupView = ({ onLoggedIn })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 73,
+                lineNumber: 88,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/signup-view/signup-view.jsx",
-        lineNumber: 51,
+        lineNumber: 66,
         columnNumber: 5
     }, undefined);
 };

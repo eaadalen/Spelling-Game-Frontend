@@ -6,7 +6,7 @@ export const SignupView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     const data = {
       Username: username,
@@ -14,38 +14,53 @@ export const SignupView = ({ onLoggedIn }) => {
     };
 
     fetch(
-      "https://spelling-game-ef1de28a171a.herokuapp.com/users",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    )
-      .then((responseV1) => responseV1.json())
-      .then((dataV1) => {
-        fetch(
-          "https://desolate-everglades-87695-c2e8310ae46d.herokuapp.com/login?Username=" + String(data.Username) + "&Password=" + String(data.Password),
-          {
+        "https://spelling-game-ef1de28a171a.herokuapp.com/users",
+        {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-              "Content-Type": "application/json"
+            "Content-Type": "application/json"
             }
-          }
-        )
-        .then((responseV2) => responseV2.json())
-        .then((dataV2) => {
-          localStorage.setItem("user", JSON.stringify(dataV2.user));
-          localStorage.setItem("token", dataV2.token);
-          onLoggedIn(dataV2.user, dataV2.token);
-        });
-      })
-      .catch((e) => {
-        alert("Something went wrong");
-      });
-  };
+        }
+    )
+    .then((response) => {
+        if (response.status == 201) {
+            response.json()
+            .then(() => {
+                fetch(
+                    "https://spelling-game-ef1de28a171a.herokuapp.com/login?Username=" +
+                        data.Username +
+                        "&Password=" +
+                        data.Password,
+                    {
+                        method: "POST",
+                        headers: {
+                        "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    }
+                )
+                .then((response) => response.json())
+                .then((dataV1) => {
+                    if (dataV1.user) {
+                        localStorage.setItem("user", JSON.stringify(dataV1.user));
+                        localStorage.setItem("token", dataV1.token);
+                        onLoggedIn(dataV1.user, dataV1.token);
+                    } else {
+                        alert("No such user");
+                    }
+                })
+                .catch((e) => {
+                    alert("Something went wrong");
+                    console.log(e)
+                });
+            })
+        }
+        else {
+            alert("Username is already taken")
+        }
+    })
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
