@@ -286,7 +286,7 @@ export const PlayView = () => {
                   <div className="modalSubContainer">
                     <button className="button" onClick={playAgain}>Play Again?</button>
                     {!loggedIn &&
-                      <Link to={`/login`} className="loginLink">
+                      <Link to={`/login`}>
                         <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
                           Log in to view high score
                         </div>

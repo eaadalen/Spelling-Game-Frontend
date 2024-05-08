@@ -1,4 +1,6 @@
+import "./login-view.scss"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -28,8 +30,8 @@ export const LoginView = ({ onLoggedIn }) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("Login response: ", data);
         if (data.user) {
+          console.log(data)
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
@@ -39,32 +41,44 @@ export const LoginView = ({ onLoggedIn }) => {
       })
       .catch((e) => {
         alert("Something went wrong");
+        console.log(e)
       });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </Form.Group>
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <p></p>
-      <button className="update-button">Submit</button>
-    </Form>
+    <div className="container">
+      <Form onSubmit={handleSubmit} style={{width: '750px'}}>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="3"
+          />
+        </Form.Group>
+        <br></br>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <p></p>
+        <button className="button">Submit</button>
+        <div style={{fontSize: '0.75em', paddingTop: '0.5em'}}>
+          Don't have an account?
+        </div>
+        <Link to={`/signup`}>
+          <div style={{fontSize: '0.75em'}}>
+            Sign up here
+          </div>
+        </Link>
+      </Form>
+    </div>
   );
 };
