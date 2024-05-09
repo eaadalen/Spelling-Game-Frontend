@@ -138,6 +138,7 @@ export const PlayView = () => {
           getSound();
         }
         else {
+          localStorage.setItem("localHighScore", score - 100);
           if (score - 100 > highScore) {
             setHighScore(score - 100)
             if (user) {
@@ -323,7 +324,7 @@ export const PlayView = () => {
                     {!user &&
                       <Link to={`/login`}>
                         <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
-                          Log in to view high score
+                          Log in to view/save high score
                         </div>
                       </Link>
                     }

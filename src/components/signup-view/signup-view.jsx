@@ -11,6 +11,7 @@ export const SignupView = ({ onLoggedIn }) => {
     const data = {
       Username: username,
       Password: password,
+      highScore: localStorage.getItem("localHighScore")
     };
 
     fetch(

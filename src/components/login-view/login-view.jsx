@@ -12,7 +12,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
     const data = {
       Username: username,
-      Password: password
+      Password: password,
     };
 
     fetch(
@@ -28,21 +28,41 @@ export const LoginView = ({ onLoggedIn }) => {
         body: JSON.stringify(data)
       }
     )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.user) {
-          console.log(data)
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
-          onLoggedIn(data.user, data.token);
-        } else {
-          alert("No such user");
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.user) {
+        console.log(data)
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        onLoggedIn(data.user, data.token);
+        if (data.user.highScore < localStorage.getItem("localHighScore")) {
+          fetch(
+            "https://spelling-game-ef1de28a171a.herokuapp.com/users/" + String(data.user.Username),
+            {
+                method: "PUT",
+                body: JSON.stringify({
+                  "highScore" : localStorage.getItem("localHighScore")
+                }),
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+          )
+          .then((response) => {
+            console.log(response)
+          })
         }
-      })
-      .catch((e) => {
-        alert("Something went wrong");
-        console.log(e)
-      });
+      } else {
+        alert("No such user");
+      }
+    })
+    .catch((e) => {
+      alert("Something went wrong");
+      console.log(e)
+    });
+
+    
   };
 
   return (
