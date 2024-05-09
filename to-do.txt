@@ -1,0 +1,4 @@
+-display correct word if spelled incorrectly
+-add logout option
+-lock out play sound while next word is loading
+-play sound using spacebar
