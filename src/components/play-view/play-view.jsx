@@ -140,6 +140,9 @@ export const PlayView = () => {
         else {
           if (score - 100 > highScore) {
             setHighScore(score - 100)
+            if (user) {
+              updateHighScore()
+            }
           }
           toggleModal()
         }
@@ -220,8 +223,26 @@ export const PlayView = () => {
     }
 
     const updateHighScore = () => {
-      
-    }
+
+      const data = {
+        highScore: highScore
+      };
+
+      fetch(
+        "https://spelling-game-ef1de28a171a.herokuapp.com/users/" + String(JSON.parse(storedUser).Username),
+        {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            }
+        }
+      )
+      .then((response) => {
+        console.log(response)
+      })
+  }
   
     return (
       <div className="container">
