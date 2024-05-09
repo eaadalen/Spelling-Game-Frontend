@@ -109,18 +109,12 @@
   font-size: 20px;
 }
 
-.container {
+.custom-container {
   text-align: center;
   flex-direction: row;
-  width: 100%;
-  margin: 12% auto 0;
-  padding-top: 50px;
+  justify-content: center;
+  padding-top: 35%;
   display: flex;
-}
-
-.sub-container {
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .left {
@@ -131,7 +125,10 @@
 }
 
 .right {
+  text-transform: uppercase;
+  margin-bottom: auto;
   padding-left: 20px;
+  font-size: 2rem;
 }
 
 .container {
@@ -139,7 +136,7 @@
   justify-content: center;
   align-items: center;
   width: 300px;
-  margin: 12% auto 0;
+  margin: 7% auto 0;
   padding-top: 50px;
   display: flex;
 }

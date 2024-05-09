@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const WelcomeView = () => {
   return (
-    <div className="container">
+    <div className="custom-container">
         <div className="left">Spelling Survival</div>
         <div className="right"> 
           <Link to={`/play`}>
