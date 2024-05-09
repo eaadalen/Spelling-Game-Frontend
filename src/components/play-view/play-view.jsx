@@ -16,7 +16,6 @@ export const PlayView = () => {
     const [sound, setSound] = useState()
     const [strikes, setStrikes] = useState(1)
     const [score, setScore] = useState(100)
-    const [highScore, setHighScore] = useState("?")
     const [streak, setStreak] = useState(1)
     const [correctOpen, setCorrectOpen] = useState(false)
     const [incorrectOpen, setIncorrectOpen] = useState(false)
@@ -28,9 +27,14 @@ export const PlayView = () => {
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
+    const [highScore, setHighScore] = useState("?");
 
     useEffect(() => {
       getSound()
+      if (storedUser) {
+        const storedHighScore = JSON.parse(storedUser).highScore;
+        setHighScore(storedHighScore)
+      }
     }, [])
 
     const generateWordBank = (validated_word) => {
@@ -134,6 +138,9 @@ export const PlayView = () => {
           getSound();
         }
         else {
+          if (score - 100 > highScore) {
+            setHighScore(score - 100)
+          }
           toggleModal()
         }
         await sleep(1000)
@@ -210,6 +217,10 @@ export const PlayView = () => {
 
     const playAgain = () => {
       location.reload();
+    }
+
+    const updateHighScore = () => {
+      
     }
   
     return (

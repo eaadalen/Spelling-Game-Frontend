@@ -138,15 +138,16 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 300px;
   margin: 12% auto 0;
   padding-top: 50px;
   display: flex;
 }
 
 .sub-container {
-  padding-left: 100px;
-  padding-right: 100px;
+  margin: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .modal {
