@@ -24,7 +24,10 @@ export const PlayView = () => {
     const [fire_pic2, setfire_pic2] = useState(false)
     const [fire_pic3, setfire_pic3] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const [loggedIn, setLoggedIn] = useState(false)
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser ? storedUser : null);
+    const [token, setToken] = useState(storedToken ? storedToken : null);
 
     useEffect(() => {
       getSound()
@@ -285,7 +288,7 @@ export const PlayView = () => {
                   </div>
                   <div className="modalSubContainer">
                     <button className="button" onClick={playAgain}>Play Again?</button>
-                    {!loggedIn &&
+                    {!user &&
                       <Link to={`/login`}>
                         <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
                           Log in to view high score
