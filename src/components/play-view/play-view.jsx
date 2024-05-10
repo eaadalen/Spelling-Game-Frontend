@@ -107,52 +107,6 @@ export const PlayView = () => {
       await create_sound_URL(random_word, calc_soundID)
     }
 
-    async function handleSubmit(event) {
-      event.preventDefault();
-      if (spelling == word) {
-        setCorrectOpen(true)
-        if (streak < 4) {
-          setScore(score + 100)
-        }
-        else if (streak >= 4 && streak < 7) {
-          setScore(score + 200)
-        }
-        else if (streak >= 7 && streak < 10) {
-          setScore(score + 300)
-        }
-        else {
-          setScore(score + 500)
-        }
-        setStreak(streak + 1)
-        setFire(streak)
-        getSound();
-        await sleep(1000)
-        setCorrectOpen(false)
-      }
-      else {
-        setIncorrectOpen(true)
-        setStrikes(strikes + 1)
-        setStreak(1)
-        setFire(0)
-        if (strikes <= 2) {
-          getSound();
-        }
-        else {
-          localStorage.setItem("localHighScore", score - 100);
-          if (score - 100 > highScore) {
-            setHighScore(score - 100)
-            if (user) {
-              updateHighScore()
-            }
-          }
-          toggleModal()
-        }
-        await sleep(1000)
-        setIncorrectOpen(false)
-      }
-      setSpelling("")
-  }
-
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -226,7 +180,9 @@ export const PlayView = () => {
     const updateHighScore = () => {
 
       const data = {
-        highScore: highScore
+        Username: String(JSON.parse(storedUser).Username),
+        Password: String(JSON.parse(storedUser).Password),
+        highScore: score - 100
       };
 
       fetch(
@@ -243,8 +199,53 @@ export const PlayView = () => {
       .then((response) => {
         console.log(response)
       })
-  }
-  
+    }
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      if (spelling == word) {
+        setCorrectOpen(true)
+        if (streak < 4) {
+          setScore(score + 100)
+        }
+        else if (streak >= 4 && streak < 7) {
+          setScore(score + 200)
+        }
+        else if (streak >= 7 && streak < 10) {
+          setScore(score + 300)
+        }
+        else {
+          setScore(score + 500)
+        }
+        setStreak(streak + 1)
+        setFire(streak)
+        getSound();
+        await sleep(1000)
+        setCorrectOpen(false)
+      }
+      else {
+        setIncorrectOpen(true)
+        setStrikes(strikes + 1)
+        setStreak(1)
+        setFire(0)
+        if (strikes <= 2) {
+          getSound();
+        }
+        else {
+          localStorage.setItem("localHighScore", score - 100);
+          if (score - 100 > highScore) {
+            if (user) {
+              updateHighScore()
+            }
+          }
+          toggleModal()
+        }
+        await sleep(1000)
+        setIncorrectOpen(false)
+      }
+      setSpelling("")
+    }
+    
     return (
       <div className="container">
           <div className="sub-container">
