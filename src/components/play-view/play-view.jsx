@@ -27,13 +27,26 @@ export const PlayView = () => {
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = useState(storedUser ? storedUser : null);
     const [token, setToken] = useState(storedToken ? storedToken : null);
-    const [highScore, setHighScore] = useState("?");
+    const [localHighScore, setLocalHighScore] = useState("?");
+    const [newHighScore, setNewHighScore] = useState(false);
 
     useEffect(() => {
       getSound()
       if (storedUser) {
-        const storedHighScore = JSON.parse(storedUser).highScore;
-        setHighScore(storedHighScore)
+        fetch(
+          "https://spelling-game-ef1de28a171a.herokuapp.com/users/" + String(JSON.parse(storedUser).Username),
+          {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+              }
+          }
+        )
+        .then((response) => response.json())
+        .then((data) => {
+          setLocalHighScore(data.highScore)
+        })
       }
     }, [])
 
@@ -233,9 +246,10 @@ export const PlayView = () => {
         }
         else {
           localStorage.setItem("localHighScore", score - 100);
-          if (score - 100 > highScore) {
+          if (score - 100 > localHighScore) {
             if (user) {
               updateHighScore()
+              setNewHighScore(true)
             }
           }
           toggleModal()
@@ -310,14 +324,22 @@ export const PlayView = () => {
               <Modal show={true} onHide={toggleModal} className="modal">  
                 <Modal.Body className="modalContainer">
                   <div className="modalSubContainer">
-                    <div>
-                      Game Over!
-                    </div>
+                    {newHighScore &&
+                      <div>
+                        New High Score!
+                      </div>
+                    }
+                    {!newHighScore &&
+                      <div>
+                        Game Over!
+                      </div>
+                    }
+                    
                     <div>
                       Score: {score-100}
                     </div> 
                     <div>
-                      High Score: {highScore}
+                      High Score: {localHighScore}
                     </div>
                   </div>
                   <div className="modalSubContainer">
