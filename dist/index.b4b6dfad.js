@@ -39577,8 +39577,8 @@ var _fire13Png = require("../../../media/fire-1-3.png");
 var _fire13PngDefault = parcelHelpers.interopDefault(_fire13Png);
 var _fire23Png = require("../../../media/fire-2-3.png");
 var _fire23PngDefault = parcelHelpers.interopDefault(_fire23Png);
-var _fire33Png = require("../../../media/fire-3-3.png");
-var _fire33PngDefault = parcelHelpers.interopDefault(_fire33Png);
+var _giphyGif = require("../../../media/giphy.gif");
+var _giphyGifDefault = parcelHelpers.interopDefault(_giphyGif);
 var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
 const PlayView = ()=>{
@@ -39668,36 +39668,36 @@ const PlayView = ()=>{
                 setfire_pic1((0, _fire23PngDefault.default));
                 break;
             case 3:
-                setfire_pic1((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
                 setfire_pic2((0, _fire03PngDefault.default));
                 break;
             case 4:
-                setfire_pic1((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
                 setfire_pic2((0, _fire13PngDefault.default));
                 break;
             case 5:
-                setfire_pic1((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
                 setfire_pic2((0, _fire23PngDefault.default));
                 break;
             case 6:
-                setfire_pic1((0, _fire33PngDefault.default));
-                setfire_pic2((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
+                setfire_pic2((0, _giphyGifDefault.default));
                 setfire_pic3((0, _fire03PngDefault.default));
                 break;
             case 7:
-                setfire_pic1((0, _fire33PngDefault.default));
-                setfire_pic2((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
+                setfire_pic2((0, _giphyGifDefault.default));
                 setfire_pic3((0, _fire13PngDefault.default));
                 break;
             case 8:
-                setfire_pic1((0, _fire33PngDefault.default));
-                setfire_pic2((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
+                setfire_pic2((0, _giphyGifDefault.default));
                 setfire_pic3((0, _fire23PngDefault.default));
                 break;
             case 9:
-                setfire_pic1((0, _fire33PngDefault.default));
-                setfire_pic2((0, _fire33PngDefault.default));
-                setfire_pic3((0, _fire33PngDefault.default));
+                setfire_pic1((0, _giphyGifDefault.default));
+                setfire_pic2((0, _giphyGifDefault.default));
+                setfire_pic3((0, _giphyGifDefault.default));
                 break;
         }
     };
@@ -40122,7 +40122,7 @@ $RefreshReg$(_c, "PlayView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","react":"21dqq","react-bootstrap/Form":"iBZ80","../../../media/checkmark.svg":"7FXXW","../../../media/xmark.svg":"cH1zN","../../../media/fire-0-3.png":"avEMf","../../../media/fire-1-3.png":"6xzwk","../../../media/fire-2-3.png":"5bRrh","../../../media/fire-3-3.png":"kVWdN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"9xmpe"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./play-view.scss":"koBHD","react":"21dqq","react-bootstrap/Form":"iBZ80","../../../media/checkmark.svg":"7FXXW","../../../media/xmark.svg":"cH1zN","../../../media/fire-0-3.png":"avEMf","../../../media/fire-2-3.png":"5bRrh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../../../media/fire-1-3.png":"6xzwk","../../../media/giphy.gif":"6wGDw"}],"koBHD":[function() {},{}],"7FXXW":[function(require,module,exports) {
 module.exports = require("de721ebe66b353f4").getBundleURL("byUka") + "checkmark.48088ee4.svg" + "?" + Date.now();
 
 },{"de721ebe66b353f4":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -40166,16 +40166,16 @@ module.exports = require("80c4d9948af76d6e").getBundleURL("byUka") + "xmark.8c83
 },{"80c4d9948af76d6e":"lgJ39"}],"avEMf":[function(require,module,exports) {
 module.exports = require("f1d2db69caf9a2f7").getBundleURL("byUka") + "fire-0-3.91932df0.png" + "?" + Date.now();
 
-},{"f1d2db69caf9a2f7":"lgJ39"}],"6xzwk":[function(require,module,exports) {
-module.exports = require("8ffda57f74732726").getBundleURL("byUka") + "fire-1-3.9c92737e.png" + "?" + Date.now();
-
-},{"8ffda57f74732726":"lgJ39"}],"5bRrh":[function(require,module,exports) {
+},{"f1d2db69caf9a2f7":"lgJ39"}],"5bRrh":[function(require,module,exports) {
 module.exports = require("cc0d4ef91c8b111d").getBundleURL("byUka") + "fire-2-3.3bf275ef.png" + "?" + Date.now();
 
-},{"cc0d4ef91c8b111d":"lgJ39"}],"kVWdN":[function(require,module,exports) {
-module.exports = require("986f1c87ec667b45").getBundleURL("byUka") + "fire-3-3.576a5449.png" + "?" + Date.now();
+},{"cc0d4ef91c8b111d":"lgJ39"}],"6xzwk":[function(require,module,exports) {
+module.exports = require("8ffda57f74732726").getBundleURL("byUka") + "fire-1-3.9c92737e.png" + "?" + Date.now();
 
-},{"986f1c87ec667b45":"lgJ39"}],"4OGiN":[function(require,module,exports) {
+},{"8ffda57f74732726":"lgJ39"}],"6wGDw":[function(require,module,exports) {
+module.exports = require("87fe161240a7baf7").getBundleURL("byUka") + "giphy.bf869c61.gif" + "?" + Date.now();
+
+},{"87fe161240a7baf7":"lgJ39"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

@@ -7,7 +7,7 @@ import xmark from '../../../media/xmark.svg';
 import fire_0_3 from '../../../media/fire-0-3.png';
 import fire_1_3 from '../../../media/fire-1-3.png';
 import fire_2_3 from '../../../media/fire-2-3.png';
-import fire_3_3 from '../../../media/fire-3-3.png';
+import fire_3_3 from '../../../media/giphy.gif';
 import { Modal } from 'react-bootstrap'; 
 
 export const PlayView = () => {
