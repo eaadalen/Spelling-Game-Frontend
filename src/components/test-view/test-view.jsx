@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const TestView = () => {
 
@@ -12,23 +12,6 @@ export const TestView = () => {
         const response = await fetch("https://random-word-api.herokuapp.com/word")
         const response_json = await response.json()
         return response_json[0]
-    }
-
-    const generateWordBank = (validated_word) => {
-        const data = {
-          Spelling: validated_word
-        }
-        
-        fetch(
-          "https://spelling-game-ef1de28a171a.herokuapp.com/words",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          }
-        )
     }
     
     async function generateValidatedWord() {
@@ -88,8 +71,6 @@ export const TestView = () => {
         getSound().then(response => audio = response)
         await sleep(2000)
         if (audio) {
-          console.log(word)
-          //audio.play()
           generateWordBank(word)
         }
         else {
@@ -98,6 +79,26 @@ export const TestView = () => {
         i = i + 1
         audio = false
       }
+    }
+
+    const generateWordBank = (validated_word) => {
+
+        const data = {
+          Spelling: validated_word
+        }
+
+        console.log(data)
+        
+        fetch(
+          "https://spelling-game-ef1de28a171a.herokuapp.com/words",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          }
+        )
     }
     
     return (

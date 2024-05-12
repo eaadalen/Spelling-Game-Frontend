@@ -40349,18 +40349,6 @@ const TestView = ()=>{
         const response_json = await response.json();
         return response_json[0];
     }
-    const generateWordBank = (validated_word)=>{
-        const data = {
-            Spelling: validated_word
-        };
-        fetch("https://spelling-game-ef1de28a171a.herokuapp.com/words", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-    };
     async function generateValidatedWord() {
         const response = await fetch("https://spelling-game-ef1de28a171a.herokuapp.com/random");
         const response_json = await response.json();
@@ -40406,15 +40394,25 @@ const TestView = ()=>{
         while(i < 10){
             getSound().then((response)=>audio = response);
             await sleep(2000);
-            if (audio) {
-                console.log(word);
-                //audio.play()
-                generateWordBank(word);
-            } else console.log("false");
+            if (audio) generateWordBank(word);
+            else console.log("false");
             i = i + 1;
             audio = false;
         }
     }
+    const generateWordBank = (validated_word)=>{
+        const data = {
+            Spelling: validated_word
+        };
+        console.log(data);
+        fetch("https://spelling-game-ef1de28a171a.herokuapp.com/words", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -40423,12 +40421,12 @@ const TestView = ()=>{
             children: "Play Sound"
         }, void 0, false, {
             fileName: "src/components/test-view/test-view.jsx",
-            lineNumber: 105,
+            lineNumber: 106,
             columnNumber: 11
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/test-view/test-view.jsx",
-        lineNumber: 104,
+        lineNumber: 105,
         columnNumber: 7
     }, undefined);
 };
