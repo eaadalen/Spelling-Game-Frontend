@@ -1,6 +1,6 @@
--display correct word if spelled incorrectly
--add logout option
--lock out play sound while next word is loading
 -play sound using spacebar
+-lock out play sound while next word is loading
 -preload words into array
 -check all UX patterns for errors
+-add logout option
+

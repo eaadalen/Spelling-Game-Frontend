@@ -39745,7 +39745,7 @@ const PlayView = ()=>{
             setStrikes(strikes + 1);
             setStreak(1);
             setFire(0);
-            await sleep(1000);
+            await sleep(1500);
             if (strikes <= 2) getSound();
             else {
                 localStorage.setItem("localHighScore", score - 100);
