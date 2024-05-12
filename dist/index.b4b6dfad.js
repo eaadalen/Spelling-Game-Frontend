@@ -40392,7 +40392,7 @@ const TestView = ()=>{
     async function playSound() {
         var i = 0;
         var audio = null;
-        while(i < 10){
+        while(i < 10000){
             await getSound().then((response)=>audio = response);
             try {
                 //console.log("audio[0]: " + String(audio[0]) + " audio[1]: " + String(audio[1]))
