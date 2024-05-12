@@ -48,6 +48,7 @@ export const PlayView = () => {
           setLocalHighScore(data.highScore)
         })
       }
+      
     }, [])
 
     async function generateValidatedWord() {

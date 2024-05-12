@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 export const TestView = () => {
 
     async function generateWord() {
@@ -99,6 +101,19 @@ export const TestView = () => {
           }
         )
     }
+
+    var audio = null
+
+    document.addEventListener("keypress", (event) => {
+      getSound().then(response => audio = response)
+      try {
+          console.log("audio[0]: " + String(audio[0]) + " audio[1]: " + String(audio[1]))
+          audio[0].play()
+      }
+      catch {
+          // do nothing
+      }
+    });
     
     return (
       <div className="container">
