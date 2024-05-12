@@ -1,6 +1,4 @@
--lock out play sound while next word is loading
--preload words into array
--check all UX patterns for errors
+Things I would improve if I made this app again:
+-preload words into queue
 -add logout option
--add navigation buttons between pages
-
+-add burning flame animation to streaks
