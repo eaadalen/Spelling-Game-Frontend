@@ -2,4 +2,5 @@
 -add logout option
 -lock out play sound while next word is loading
 -play sound using spacebar
--remove remaining error words
+-preload words into array
+-check all UX patterns for errors

@@ -50,33 +50,10 @@ export const PlayView = () => {
       }
     }, [])
 
-    const generateWordBank = (validated_word) => {
-      const data = {
-        Spelling: validated_word
-      }
-      
-      fetch(
-        "https://spelling-game-ef1de28a171a.herokuapp.com/words",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        }
-      )
-    }
-
     async function generateValidatedWord() {
       const response = await fetch("https://spelling-game-ef1de28a171a.herokuapp.com/random")
       const response_json = await response.json()
       return response_json[0]["Spelling"]
-    }
-
-    async function generateWord() {
-      const response = await fetch("https://random-word-api.herokuapp.com/word")
-      const response_json = await response.json()
-      return response_json[0]
     }
     
     async function getSoundID(random) {
@@ -107,7 +84,6 @@ export const PlayView = () => {
             const newAudioURL = objectURL;
             var a = new Audio(newAudioURL);
             setSound(a);
-            //generateWordBank(raw_word)
         })
         .catch(err => {
         })
@@ -241,6 +217,7 @@ export const PlayView = () => {
         setStrikes(strikes + 1)
         setStreak(1)
         setFire(0)
+        await sleep(1000)
         if (strikes <= 2) {
           getSound();
         }
@@ -254,7 +231,6 @@ export const PlayView = () => {
           }
           toggleModal()
         }
-        await sleep(1000)
         setIncorrectOpen(false)
       }
       setSpelling("")
@@ -274,7 +250,7 @@ export const PlayView = () => {
                   }
                   {incorrectOpen && 
                     <div className="incorrect">
-                      <img src={xmark} className="checkmark"/>
+                      <p className="checkmark">{word}</p>
                     </div>
                   }
                   {!correctOpen && !incorrectOpen &&
@@ -334,7 +310,6 @@ export const PlayView = () => {
                         Game Over!
                       </div>
                     }
-                    
                     <div>
                       Score: {score-100}
                     </div> 
