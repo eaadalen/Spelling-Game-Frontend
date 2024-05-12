@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { WelcomeView } from "../welcome-view/welcome-view";
+import { TestView } from "../test-view/test-view";
 import { Col, Row } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { PlayView } from "../play-view/play-view";
@@ -63,6 +64,14 @@ export const MainView = () => {
             element={
               <>
                 <PlayView/>
+              </>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <>
+                <TestView/>
               </>
             }
           />
