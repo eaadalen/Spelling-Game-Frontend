@@ -40336,14 +40336,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TestView", ()=>TestView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _s = $RefreshSig$();
 const TestView = ()=>{
-    _s();
-    const [word, setWord] = (0, _react.useState)("");
-    function sleep(ms) {
-        return new Promise((resolve)=>setTimeout(resolve, ms));
-    }
     async function generateWord() {
         const response = await fetch("https://random-word-api.herokuapp.com/word");
         const response_json = await response.json();
@@ -40360,42 +40353,53 @@ const TestView = ()=>{
         const response_json = await response.json();
         try {
             var temp_word = response_json[0]["meta"]["id"];
-            if (temp_word.includes("-") == false && temp_word.includes(":") == false && temp_word.includes(" ") == false && /\d/.test(temp_word) == false) {
-                setWord(String(response_json[0]["meta"]["id"]).toLowerCase());
-                return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"]);
-            }
+            if (temp_word.includes("-") == false && temp_word.includes(":") == false && temp_word.includes(" ") == false && /\d/.test(temp_word) == false) return [
+                String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"]),
+                String(response_json[0]["meta"]["id"]).toLowerCase()
+            ];
         } catch (error) {
             return undefined;
         }
     }
     async function generateAudioObject(raw_word, soundID) {
         var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/" + raw_word.charAt(0) + "/" + soundID + ".mp3";
+        //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + "f" + "/" + "fruity01" + ".mp3";
         var newAudioURL = null;
         var a = null;
         await fetch(sound_url).then((res)=>res.blob()).then((myBlob)=>{
             newAudioURL = URL.createObjectURL(myBlob);
             a = new Audio(newAudioURL);
         }).catch((error)=>{
-        //console.log(error)
+            a = undefined;
         });
         return a;
     }
     async function getSound() {
         const random_word = await generateWord();
         const calc_soundID = await getAudioID(random_word);
-        if (calc_soundID != undefined) {
-            const audioObject = await generateAudioObject(random_word, calc_soundID);
-            return audioObject;
+        try {
+            if (calc_soundID[0] != undefined) {
+                const audioObject = await generateAudioObject(random_word, calc_soundID[0]);
+                return [
+                    audioObject,
+                    calc_soundID[1]
+                ];
+            }
+        } catch  {
+        // do nothing
         }
     }
     async function playSound() {
         var i = 0;
         var audio = null;
         while(i < 10){
-            getSound().then((response)=>audio = response);
-            await sleep(2000);
-            if (audio) generateWordBank(word);
-            else console.log("false");
+            await getSound().then((response)=>audio = response);
+            try {
+                //console.log("audio[0]: " + String(audio[0]) + " audio[1]: " + String(audio[1]))
+                if (audio[0] != undefined) generateWordBank(audio[1]);
+            } catch  {
+            // do nothing
+            }
             i = i + 1;
             audio = false;
         }
@@ -40421,16 +40425,15 @@ const TestView = ()=>{
             children: "Play Sound"
         }, void 0, false, {
             fileName: "src/components/test-view/test-view.jsx",
-            lineNumber: 106,
+            lineNumber: 105,
             columnNumber: 11
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/test-view/test-view.jsx",
-        lineNumber: 105,
+        lineNumber: 104,
         columnNumber: 7
     }, undefined);
 };
-_s(TestView, "KIhUDbJtUcjE+1oNeU7mNfhsQvU=");
 _c = TestView;
 var _c;
 $RefreshReg$(_c, "TestView");
@@ -40440,6 +40443,6 @@ $RefreshReg$(_c, "TestView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["5qIsR","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["5qIsR","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
