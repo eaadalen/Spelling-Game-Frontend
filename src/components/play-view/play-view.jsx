@@ -187,7 +187,6 @@ export const PlayView = () => {
         }
       )
       .then((response) => {
-        console.log(response)
       })
     }
 
@@ -247,6 +246,7 @@ export const PlayView = () => {
       <div className="container">
           <div className="sub-container">
             <button className="button" onClick={playSound}>Play Sound</button>
+            <div style={{fontSize: '0.75em', paddingTop: '0.25em'}}>or press space bar</div>
             <Form>
                 <p></p>
                 <div>
@@ -263,9 +263,10 @@ export const PlayView = () => {
                   {!correctOpen && !incorrectOpen &&
                     <Form.Group>
                       <Form.Control
+                          autoFocus
                           type="text"
                           value={spelling}
-                          onChange={(e) => setSpelling(e.target.value)}
+                          onChange={(e) => setSpelling(e.target.value.replace(/\s/g, ''))}
                           placeholder="Start Typing..."
                       />
                     </Form.Group>

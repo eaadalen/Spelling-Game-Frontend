@@ -39723,9 +39723,7 @@ const PlayView = ()=>{
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>{
-            console.log(response);
-        });
+        }).then((response)=>{});
     };
     async function handleSubmit(event) {
         event.preventDefault();
@@ -39776,6 +39774,17 @@ const PlayView = ()=>{
                         children: "Play Sound"
                     }, void 0, false, {
                         fileName: "src/components/play-view/play-view.jsx",
+                        lineNumber: 248,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            fontSize: "0.75em",
+                            paddingTop: "0.25em"
+                        },
+                        children: "or press space bar"
+                    }, void 0, false, {
+                        fileName: "src/components/play-view/play-view.jsx",
                         lineNumber: 249,
                         columnNumber: 13
                     }, undefined),
@@ -39820,9 +39829,10 @@ const PlayView = ()=>{
                                     }, undefined),
                                     !correctOpen && !incorrectOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                            autoFocus: true,
                                             type: "text",
                                             value: spelling,
-                                            onChange: (e)=>setSpelling(e.target.value),
+                                            onChange: (e)=>setSpelling(e.target.value.replace(/\s/g, "")),
                                             placeholder: "Start Typing..."
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
@@ -39842,7 +39852,7 @@ const PlayView = ()=>{
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 274,
+                                lineNumber: 275,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -39851,7 +39861,7 @@ const PlayView = ()=>{
                                 children: "Submit"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 275,
+                                lineNumber: 276,
                                 columnNumber: 17
                             }, undefined)
                         ]
@@ -39863,7 +39873,7 @@ const PlayView = ()=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 248,
+                lineNumber: 247,
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39877,7 +39887,7 @@ const PlayView = ()=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 279,
+                        lineNumber: 280,
                         columnNumber: 15
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39888,7 +39898,7 @@ const PlayView = ()=>{
                                 children: "Streak"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 281,
+                                lineNumber: 282,
                                 columnNumber: 17
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39899,12 +39909,12 @@ const PlayView = ()=>{
                                             height: "30"
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 285,
+                                            lineNumber: 286,
                                             columnNumber: 23
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 284,
+                                        lineNumber: 285,
                                         columnNumber: 21
                                     }, undefined),
                                     fire_pic1 && fire_pic2 && !fire_pic3 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39914,7 +39924,7 @@ const PlayView = ()=>{
                                                 height: "30"
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 290,
+                                                lineNumber: 291,
                                                 columnNumber: 23
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -39922,13 +39932,13 @@ const PlayView = ()=>{
                                                 height: "30"
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 291,
+                                                lineNumber: 292,
                                                 columnNumber: 23
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 289,
+                                        lineNumber: 290,
                                         columnNumber: 21
                                     }, undefined),
                                     fire_pic1 && fire_pic2 && fire_pic3 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39938,7 +39948,7 @@ const PlayView = ()=>{
                                                 height: "30"
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 296,
+                                                lineNumber: 297,
                                                 columnNumber: 23
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -39946,7 +39956,7 @@ const PlayView = ()=>{
                                                 height: "30"
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 297,
+                                                lineNumber: 298,
                                                 columnNumber: 23
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -39954,25 +39964,25 @@ const PlayView = ()=>{
                                                 height: "30"
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 298,
+                                                lineNumber: 299,
                                                 columnNumber: 23
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 295,
+                                        lineNumber: 296,
                                         columnNumber: 21
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 282,
+                                lineNumber: 283,
                                 columnNumber: 17
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 280,
+                        lineNumber: 281,
                         columnNumber: 15
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -39983,13 +39993,13 @@ const PlayView = ()=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 303,
+                        lineNumber: 304,
                         columnNumber: 15
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 278,
+                lineNumber: 279,
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40007,14 +40017,14 @@ const PlayView = ()=>{
                                         children: "New High Score!"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 311,
+                                        lineNumber: 312,
                                         columnNumber: 23
                                     }, undefined),
                                     !newHighScore && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         children: "Game Over!"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 316,
+                                        lineNumber: 317,
                                         columnNumber: 23
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40024,7 +40034,7 @@ const PlayView = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 320,
+                                        lineNumber: 321,
                                         columnNumber: 21
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40034,13 +40044,13 @@ const PlayView = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 323,
+                                        lineNumber: 324,
                                         columnNumber: 21
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 309,
+                                lineNumber: 310,
                                 columnNumber: 19
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40052,7 +40062,7 @@ const PlayView = ()=>{
                                         children: "Play Again?"
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 328,
+                                        lineNumber: 329,
                                         columnNumber: 21
                                     }, undefined),
                                     !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -40065,40 +40075,40 @@ const PlayView = ()=>{
                                             children: "Log in to view/save high score"
                                         }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 331,
+                                            lineNumber: 332,
                                             columnNumber: 25
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 330,
+                                        lineNumber: 331,
                                         columnNumber: 23
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 327,
+                                lineNumber: 328,
                                 columnNumber: 19
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
-                        lineNumber: 308,
+                        lineNumber: 309,
                         columnNumber: 17
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/play-view/play-view.jsx",
-                    lineNumber: 307,
+                    lineNumber: 308,
                     columnNumber: 15
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/play-view/play-view.jsx",
-                lineNumber: 305,
+                lineNumber: 306,
                 columnNumber: 11
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/play-view/play-view.jsx",
-        lineNumber: 247,
+        lineNumber: 246,
         columnNumber: 7
     }, undefined);
 };
