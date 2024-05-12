@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export const TestView = () => {
 
-    const [sound, setSound] = useState(false)
+    const [word, setWord] = useState("")
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -47,6 +47,7 @@ export const TestView = () => {
             temp_word.includes(":") == false && 
             temp_word.includes(" ") == false && 
             /\d/.test(temp_word) == false) {
+            setWord(String(response_json[0]["meta"]["id"]).toLowerCase())
             return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"])
         }
       } catch (error) {
@@ -57,42 +58,45 @@ export const TestView = () => {
 
     async function generateAudioObject(raw_word, soundID) {
         var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + raw_word.charAt(0) + "/" + soundID + ".mp3";
-        //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + "a" + "/" + "acrome01" + ".mp3";
-        fetch(sound_url)
+        var newAudioURL = null
+        var a = null
+        await fetch(sound_url)
         .then(res => res.blob())
         .then((myBlob) => {
-            const objectURL = URL.createObjectURL(myBlob);
-            const newAudioURL = objectURL;
-            const a = new Audio(newAudioURL);
-            return a
+            newAudioURL = URL.createObjectURL(myBlob)
+            a = new Audio(newAudioURL)
         })
         .catch(error => {
-            return
+            //console.log(error)
         })
+        return a
     }
 
     async function getSound() {
-      const random_word = await generateValidatedWord()
+      const random_word = await generateWord()
       const calc_soundID = await getAudioID(random_word)
       if (calc_soundID != undefined) {
         const audioObject = await generateAudioObject(random_word, calc_soundID)
-        console.log("audio object: " + String(audioObject))
+        return audioObject
       }
     }
 
     async function playSound() {
       var i = 0
-      while (i < 5) {
-        getSound()
+      var audio = null
+      while (i < 10) {
+        getSound().then(response => audio = response)
         await sleep(2000)
-        if (sound.play) {
-          console.log("true")
-          sound.play()
+        if (audio) {
+          console.log(word)
+          //audio.play()
+          generateWordBank(word)
         }
         else {
           console.log("false")
         }
         i = i + 1
+        audio = false
       }
     }
     

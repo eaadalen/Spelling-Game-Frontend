@@ -40340,7 +40340,7 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const TestView = ()=>{
     _s();
-    const [sound, setSound] = (0, _react.useState)(false);
+    const [word, setWord] = (0, _react.useState)("");
     function sleep(ms) {
         return new Promise((resolve)=>setTimeout(resolve, ms));
     }
@@ -40372,41 +40372,47 @@ const TestView = ()=>{
         const response_json = await response.json();
         try {
             var temp_word = response_json[0]["meta"]["id"];
-            if (temp_word.includes("-") == false && temp_word.includes(":") == false && temp_word.includes(" ") == false && /\d/.test(temp_word) == false) return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"]);
+            if (temp_word.includes("-") == false && temp_word.includes(":") == false && temp_word.includes(" ") == false && /\d/.test(temp_word) == false) {
+                setWord(String(response_json[0]["meta"]["id"]).toLowerCase());
+                return String(response_json[0]["hwi"]["prs"][0]["sound"]["audio"]);
+            }
         } catch (error) {
             return undefined;
         }
     }
     async function generateAudioObject(raw_word, soundID) {
         var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/" + raw_word.charAt(0) + "/" + soundID + ".mp3";
-        //var sound_url = "https://media.merriam-webster.com/audio/prons/en/us/mp3/"  + "a" + "/" + "acrome01" + ".mp3";
-        fetch(sound_url).then((res)=>res.blob()).then((myBlob)=>{
-            const objectURL = URL.createObjectURL(myBlob);
-            const newAudioURL = objectURL;
-            const a = new Audio(newAudioURL);
-            return a;
+        var newAudioURL = null;
+        var a = null;
+        await fetch(sound_url).then((res)=>res.blob()).then((myBlob)=>{
+            newAudioURL = URL.createObjectURL(myBlob);
+            a = new Audio(newAudioURL);
         }).catch((error)=>{
-            return;
+        //console.log(error)
         });
+        return a;
     }
     async function getSound() {
-        const random_word = await generateValidatedWord();
+        const random_word = await generateWord();
         const calc_soundID = await getAudioID(random_word);
         if (calc_soundID != undefined) {
             const audioObject = await generateAudioObject(random_word, calc_soundID);
-            console.log("audio object: " + String(audioObject));
+            return audioObject;
         }
     }
     async function playSound() {
         var i = 0;
-        while(i < 5){
-            getSound();
+        var audio = null;
+        while(i < 10){
+            getSound().then((response)=>audio = response);
             await sleep(2000);
-            if (sound.play) {
-                console.log("true");
-                sound.play();
+            if (audio) {
+                console.log(word);
+                //audio.play()
+                generateWordBank(word);
             } else console.log("false");
             i = i + 1;
+            audio = false;
         }
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40417,16 +40423,16 @@ const TestView = ()=>{
             children: "Play Sound"
         }, void 0, false, {
             fileName: "src/components/test-view/test-view.jsx",
-            lineNumber: 101,
+            lineNumber: 105,
             columnNumber: 11
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/test-view/test-view.jsx",
-        lineNumber: 100,
+        lineNumber: 104,
         columnNumber: 7
     }, undefined);
 };
-_s(TestView, "4aOqq4AO8lZsb9hppskxfJgif8M=");
+_s(TestView, "KIhUDbJtUcjE+1oNeU7mNfhsQvU=");
 _c = TestView;
 var _c;
 $RefreshReg$(_c, "TestView");
