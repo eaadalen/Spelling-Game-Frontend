@@ -236,6 +236,12 @@ export const PlayView = () => {
       }
       setSpelling("")
     }
+
+    document.body.onkeyup = function(e) {
+      if (e.key == " ") {
+        sound.play()
+      }
+    }
     
     return (
       <div className="container">
