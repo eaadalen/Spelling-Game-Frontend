@@ -39728,6 +39728,7 @@ const PlayView = ()=>{
     async function handleSubmit(event) {
         event.preventDefault();
         if (spelling == word) {
+            getSound();
             setCorrectOpen(true);
             if (streak < 4) setScore(score + 100);
             else if (streak >= 4 && streak < 7) setScore(score + 200);
@@ -39735,12 +39736,11 @@ const PlayView = ()=>{
             else setScore(score + 500);
             setStreak(streak + 1);
             setFire(streak);
-            getSound();
             await sleep(1000);
             setCorrectOpen(false);
         } else {
-            setIncorrectOpen(true);
             setStrikes(strikes + 1);
+            setIncorrectOpen(true);
             setStreak(1);
             setFire(0);
             await sleep(1500);
@@ -39760,7 +39760,7 @@ const PlayView = ()=>{
         setSpelling("");
     }
     document.body.onkeyup = function(e) {
-        if (e.key == " ") sound.play();
+        if (e.key == " " && strikes < 4) sound.play();
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
