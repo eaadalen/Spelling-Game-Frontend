@@ -1,4 +1,3 @@
--add burning flame animation to streaks
 -show top 10 leaderboard on game over screen
 -preload words into queue
 -add logout option
