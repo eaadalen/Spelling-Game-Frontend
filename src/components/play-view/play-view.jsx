@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import checkmark from '../../../media/checkmark.svg';
-import xmark from '../../../media/xmark.svg';
 import fire_0_3 from '../../../media/fire-0-3.png';
 import fire_1_3 from '../../../media/fire-1-3.png';
 import fire_2_3 from '../../../media/fire-2-3.png';
 import fire_3_3 from '../../../media/giphy.gif';
 import { Modal } from 'react-bootstrap'; 
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from 'react-bootstrap/Container';
+import { Card } from "react-bootstrap";
 
 export const PlayView = () => {
     const [spelling, setSpelling] = useState("")
@@ -29,6 +32,7 @@ export const PlayView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [localHighScore, setLocalHighScore] = useState("?");
     const [newHighScore, setNewHighScore] = useState(false);
+    const [topScores, setTopScores] = useState();
 
     useEffect(() => {
       getSound()
@@ -48,7 +52,20 @@ export const PlayView = () => {
           setLocalHighScore(data.highScore)
         })
       }
-      
+      fetch(
+        "https://spelling-game-ef1de28a171a.herokuapp.com/users",
+        {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            }
+        }
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        setTopScores(data)
+      })
     }, [])
 
     async function generateValidatedWord() {
@@ -308,32 +325,49 @@ export const PlayView = () => {
               <Modal show={true} onHide={toggleModal} className="modal">  
                 <Modal.Body className="modalContainer">
                   <div className="modalSubContainer">
-                    {newHighScore &&
+                    <div className="gameOver">
+                      {newHighScore &&
+                        <div>
+                          New High Score!
+                        </div>
+                      }
+                      {!newHighScore &&
+                        <div>
+                          Game Over!
+                        </div>
+                      }
                       <div>
-                        New High Score!
-                      </div>
-                    }
-                    {!newHighScore &&
+                        Score: {score-100}
+                      </div> 
                       <div>
-                        Game Over!
+                        High Score: {localHighScore}
                       </div>
-                    }
-                    <div>
-                      Score: {score-100}
-                    </div> 
-                    <div>
-                      High Score: {localHighScore}
+                    </div>
+                    <div className="playAgain">
+                      <button className="button" onClick={playAgain}>Play Again?</button>
+                      {!user &&
+                        <Link to={`/login`}>
+                          <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
+                            Log in to view/save high score
+                          </div>
+                        </Link>
+                      }
                     </div>
                   </div>
                   <div className="modalSubContainer">
-                    <button className="button" onClick={playAgain}>Play Again?</button>
-                    {!user &&
-                      <Link to={`/login`}>
-                        <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
-                          Log in to view/save high score
-                        </div>
-                      </Link>
-                    }
+                    
+                      {topScores.map((score) => (
+                        <Col className="mb-4" key={score._id} md={3}>
+                          <Card className="h-100">
+                            <Card.Body>
+                              <Card.Title>{score.Username}</Card.Title>
+                              <Card.Text>{score.highScore}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                        ))
+                      }
+                    
                   </div>
                   </Modal.Body>  
               </Modal> 

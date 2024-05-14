@@ -153,6 +153,7 @@
 
 .modalContainer {
   text-align: center;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -160,6 +161,12 @@
 }
 
 .modalSubContainer {
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+}
+
+.gameOver, .playAgain {
   padding-left: 30px;
   padding-right: 30px;
 }

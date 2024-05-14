@@ -24,12 +24,24 @@ $color: rgb(0, 0, 0);
 .modalContainer {
 	display: flex;
     justify-content: center;
+	flex-direction: column;
     align-items: center;
 	margin: 0 auto;
     text-align: center;
 }
 
 .modalSubContainer {
+	display: flex;
+    justify-content: center;
+	flex-direction: row;
+}
+
+.gameOver {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.playAgain {
 	padding-left: 30px;
 	padding-right: 30px;
 }
