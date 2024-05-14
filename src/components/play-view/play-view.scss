@@ -18,7 +18,8 @@ $color: rgb(0, 0, 0);
 }
 
 .modal {
-	margin-top: 18.5%;
+	margin-top: 9%;
+	width: 500px;
 }
 
 .modalContainer {
@@ -30,6 +31,10 @@ $color: rgb(0, 0, 0);
     text-align: center;
 }
 
+.bold {
+	font-weight:bold;
+}
+
 .modalSubContainer {
 	display: flex;
     justify-content: center;
@@ -39,6 +44,7 @@ $color: rgb(0, 0, 0);
 .gameOver {
 	padding-left: 30px;
 	padding-right: 30px;
+	width: 250px;
 }
 
 .playAgain {

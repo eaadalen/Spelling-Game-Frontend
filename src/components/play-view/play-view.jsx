@@ -320,58 +320,59 @@ export const PlayView = () => {
                 </div>
               <div className="counter">Strikes: {strikes-1}</div>
           </div>
-          <div>   
-            {showModal &&
-              <Modal show={true} onHide={toggleModal} className="modal">  
-                <Modal.Body className="modalContainer">
-                  <div className="modalSubContainer">
-                    <div className="gameOver">
-                      {newHighScore &&
+          <div>
+            <div>
+              {showModal &&
+                <Modal show={true} onHide={toggleModal} className="modal">  
+                  <Modal.Body className="modalContainer">
+                    <div className="modalSubContainer">
+                      <div className="gameOver">
+                        {newHighScore &&
+                          <div className="bold">
+                            New High Score!
+                          </div>
+                        }
+                        {!newHighScore &&
+                          <div className="bold">
+                            Game Over!
+                          </div>
+                        }
                         <div>
-                          New High Score!
-                        </div>
-                      }
-                      {!newHighScore &&
+                          Score: {score-100}
+                        </div> 
                         <div>
-                          Game Over!
+                          High Score: {localHighScore}
                         </div>
-                      }
-                      <div>
-                        Score: {score-100}
-                      </div> 
-                      <div>
-                        High Score: {localHighScore}
+                      </div>
+                      <div className="playAgain">
+                        <button className="button" onClick={playAgain}>Play Again?</button>
+                        {!user &&
+                          <Link to={`/login`}>
+                            <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
+                              Log in to view/save high score
+                            </div>
+                          </Link>
+                        }
                       </div>
                     </div>
-                    <div className="playAgain">
-                      <button className="button" onClick={playAgain}>Play Again?</button>
-                      {!user &&
-                        <Link to={`/login`}>
-                          <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
-                            Log in to view/save high score
-                          </div>
-                        </Link>
-                      }
+                    <div className="bold">
+                      Top 10 Leaderboard
                     </div>
-                  </div>
-                  <div className="modalSubContainer">
-                    
-                      {topScores.map((score) => (
-                        <Col className="mb-4" key={score._id} md={3}>
-                          <Card className="h-100">
-                            <Card.Body>
-                              <Card.Title>{score.Username}</Card.Title>
-                              <Card.Text>{score.highScore}</Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </Col>
-                        ))
-                      }
-                    
-                  </div>
-                  </Modal.Body>  
-              </Modal> 
-            }
+                    <div>
+                      
+                        {topScores.map((score) => (
+                          <Row key={score._id}>
+                            <Col>{score.Username}</Col>
+                            <Col>{score.highScore}</Col>
+                          </Row>
+                          ))
+                        }
+                      
+                    </div>
+                    </Modal.Body>  
+                </Modal> 
+              }
+            </div>
           </div>   
       </div>
     )
