@@ -354,6 +354,7 @@ export const PlayView = () => {
                           </div>
                         </Link>
                     }
+                    <br></br>
                     <div className="bold">
                       Top 10 Leaderboard
                     </div>
@@ -366,7 +367,7 @@ export const PlayView = () => {
                           ))
                         }
                     </div>
-                    </Modal.Body>  
+                  </Modal.Body>  
                 </Modal> 
               }
           </div> 

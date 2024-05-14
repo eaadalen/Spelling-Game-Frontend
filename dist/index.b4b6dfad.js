@@ -40113,12 +40113,17 @@ const PlayView = ()=>{
                                 lineNumber: 351,
                                 columnNumber: 25
                             }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 357,
+                                columnNumber: 21
+                            }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "bold",
                                 children: "Top 10 Leaderboard"
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 357,
+                                lineNumber: 358,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40128,25 +40133,25 @@ const PlayView = ()=>{
                                                 children: score.Username
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 363,
+                                                lineNumber: 364,
                                                 columnNumber: 29
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                                                 children: score.highScore
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",
-                                                lineNumber: 364,
+                                                lineNumber: 365,
                                                 columnNumber: 29
                                             }, undefined)
                                         ]
                                     }, score._id, true, {
                                         fileName: "src/components/play-view/play-view.jsx",
-                                        lineNumber: 362,
+                                        lineNumber: 363,
                                         columnNumber: 27
                                     }, undefined))
                             }, void 0, false, {
                                 fileName: "src/components/play-view/play-view.jsx",
-                                lineNumber: 360,
+                                lineNumber: 361,
                                 columnNumber: 21
                             }, undefined)
                         ]
