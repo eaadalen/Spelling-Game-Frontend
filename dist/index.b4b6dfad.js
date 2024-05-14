@@ -40017,155 +40017,148 @@ const PlayView = ()=>{
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    children: showModal && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
-                        show: true,
-                        onHide: toggleModal,
-                        className: "modal",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
-                            className: "modalContainer",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: "modalSubContainer",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "gameOver",
-                                            children: [
-                                                newHighScore && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "bold",
-                                                    children: "New High Score!"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 331,
-                                                    columnNumber: 27
-                                                }, undefined),
-                                                !newHighScore && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "bold",
-                                                    children: "Game Over!"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 336,
-                                                    columnNumber: 27
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    children: [
-                                                        "Score: ",
-                                                        score - 100
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 340,
-                                                    columnNumber: 25
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    children: [
-                                                        "High Score: ",
-                                                        localHighScore
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 343,
-                                                    columnNumber: 25
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 329,
-                                            columnNumber: 23
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "playAgain",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                                                    className: "button",
-                                                    onClick: playAgain,
-                                                    children: "Play Again?"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 348,
-                                                    columnNumber: 25
-                                                }, undefined),
-                                                !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                                                    to: `/login`,
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        style: {
-                                                            fontSize: "0.75em",
-                                                            paddingTop: "1em"
-                                                        },
-                                                        children: "Log in to view/save high score"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/play-view/play-view.jsx",
-                                                        lineNumber: 351,
-                                                        columnNumber: 29
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 350,
-                                                    columnNumber: 27
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
+                children: showModal && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal), {
+                    show: true,
+                    onHide: toggleModal,
+                    className: "modal",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Body, {
+                        className: "modalContainer",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "modalSubContainer",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "gameOver",
+                                        children: [
+                                            newHighScore && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "bold",
+                                                children: "New High Score!"
+                                            }, void 0, false, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 330,
+                                                columnNumber: 27
+                                            }, undefined),
+                                            !newHighScore && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "bold",
+                                                children: "Game Over!"
+                                            }, void 0, false, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 335,
+                                                columnNumber: 27
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                children: [
+                                                    "Score: ",
+                                                    score - 100
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 339,
+                                                columnNumber: 25
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                children: [
+                                                    "High Score: ",
+                                                    localHighScore
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 342,
+                                                columnNumber: 25
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 328,
+                                        columnNumber: 23
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "playAgain",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                                            className: "button",
+                                            onClick: playAgain,
+                                            children: "Play Again?"
+                                        }, void 0, false, {
                                             fileName: "src/components/play-view/play-view.jsx",
                                             lineNumber: 347,
-                                            columnNumber: 23
+                                            columnNumber: 25
                                         }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/play-view/play-view.jsx",
-                                    lineNumber: 328,
-                                    columnNumber: 21
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: "bold",
-                                    children: "Top 10 Leaderboard"
+                                    }, void 0, false, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 346,
+                                        columnNumber: 23
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 327,
+                                columnNumber: 21
+                            }, undefined),
+                            !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                to: `/login`,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    style: {
+                                        fontSize: "0.75em",
+                                        paddingTop: "0.5em",
+                                        paddingBottom: "0.5em"
+                                    },
+                                    children: "Log in to view/save high score"
                                 }, void 0, false, {
                                     fileName: "src/components/play-view/play-view.jsx",
-                                    lineNumber: 358,
-                                    columnNumber: 21
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    children: topScores.map((score)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                    children: score.Username
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 365,
-                                                    columnNumber: 29
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                    children: score.highScore
-                                                }, void 0, false, {
-                                                    fileName: "src/components/play-view/play-view.jsx",
-                                                    lineNumber: 366,
-                                                    columnNumber: 29
-                                                }, undefined)
-                                            ]
-                                        }, score._id, true, {
-                                            fileName: "src/components/play-view/play-view.jsx",
-                                            lineNumber: 364,
-                                            columnNumber: 27
-                                        }, undefined))
-                                }, void 0, false, {
-                                    fileName: "src/components/play-view/play-view.jsx",
-                                    lineNumber: 361,
-                                    columnNumber: 21
+                                    lineNumber: 352,
+                                    columnNumber: 27
                                 }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/play-view/play-view.jsx",
-                            lineNumber: 327,
-                            columnNumber: 19
-                        }, undefined)
-                    }, void 0, false, {
+                            }, void 0, false, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 351,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "bold",
+                                children: "Top 10 Leaderboard"
+                            }, void 0, false, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 357,
+                                columnNumber: 21
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: topScores.map((score)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                children: score.Username
+                                            }, void 0, false, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 363,
+                                                columnNumber: 29
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                                children: score.highScore
+                                            }, void 0, false, {
+                                                fileName: "src/components/play-view/play-view.jsx",
+                                                lineNumber: 364,
+                                                columnNumber: 29
+                                            }, undefined)
+                                        ]
+                                    }, score._id, true, {
+                                        fileName: "src/components/play-view/play-view.jsx",
+                                        lineNumber: 362,
+                                        columnNumber: 27
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/components/play-view/play-view.jsx",
+                                lineNumber: 360,
+                                columnNumber: 21
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/play-view/play-view.jsx",
                         lineNumber: 326,
-                        columnNumber: 17
+                        columnNumber: 19
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/play-view/play-view.jsx",
-                    lineNumber: 324,
-                    columnNumber: 13
+                    lineNumber: 325,
+                    columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/play-view/play-view.jsx",

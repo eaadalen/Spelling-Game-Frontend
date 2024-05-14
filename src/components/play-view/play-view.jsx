@@ -321,7 +321,6 @@ export const PlayView = () => {
               <div className="counter">Strikes: {strikes-1}</div>
           </div>
           <div>
-            <div>
               {showModal &&
                 <Modal show={true} onHide={toggleModal} className="modal">  
                   <Modal.Body className="modalContainer">
@@ -346,20 +345,19 @@ export const PlayView = () => {
                       </div>
                       <div className="playAgain">
                         <button className="button" onClick={playAgain}>Play Again?</button>
-                        {!user &&
-                          <Link to={`/login`}>
-                            <div style={{fontSize: '0.75em', paddingTop: '1em'}}>
-                              Log in to view/save high score
-                            </div>
-                          </Link>
-                        }
                       </div>
                     </div>
+                    {!user &&
+                        <Link to={`/login`}>
+                          <div style={{fontSize: '0.75em', paddingTop: '0.5em', paddingBottom: '0.5em'}}>
+                            Log in to view/save high score
+                          </div>
+                        </Link>
+                    }
                     <div className="bold">
                       Top 10 Leaderboard
                     </div>
                     <div>
-                      
                         {topScores.map((score) => (
                           <Row key={score._id}>
                             <Col>{score.Username}</Col>
@@ -367,13 +365,11 @@ export const PlayView = () => {
                           </Row>
                           ))
                         }
-                      
                     </div>
                     </Modal.Body>  
                 </Modal> 
               }
-            </div>
-          </div>   
+          </div> 
       </div>
     )
 }
