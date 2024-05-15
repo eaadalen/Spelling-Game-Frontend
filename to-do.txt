@@ -1,4 +1,0 @@
--sort leaderboard by score
--align scores and usernames in leaderboard
--preload words into queue
--add logout option

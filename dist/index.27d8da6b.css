@@ -161,7 +161,13 @@
 }
 
 .bold {
+  padding-top: .75em;
   font-weight: bold;
+}
+
+.rightCol {
+  justify-content: flex-end;
+  display: flex;
 }
 
 .modalSubContainer {

@@ -40131,7 +40131,6 @@ const PlayView = ()=>{
                                                 columnNumber: 29
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                                className: "rightCol",
                                                 children: score.highScore
                                             }, void 0, false, {
                                                 fileName: "src/components/play-view/play-view.jsx",

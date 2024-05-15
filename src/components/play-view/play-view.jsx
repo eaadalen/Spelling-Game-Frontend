@@ -64,7 +64,7 @@ export const PlayView = () => {
       )
       .then((response) => response.json())
       .then((data) => {
-        setTopScores(data)
+        setTopScores(data.slice(0, 10))
       })
     }, [])
 
@@ -349,12 +349,11 @@ export const PlayView = () => {
                     </div>
                     {!user &&
                         <Link to={`/login`}>
-                          <div style={{fontSize: '0.75em', paddingTop: '0.5em', paddingBottom: '0.5em'}}>
+                          <div style={{fontSize: '0.75em', paddingTop: '0.75em'}}>
                             Log in to view/save high score
                           </div>
                         </Link>
                     }
-                    <br></br>
                     <div className="bold">
                       Top 10 Leaderboard
                     </div>
@@ -362,7 +361,7 @@ export const PlayView = () => {
                         {topScores.map((score) => (
                           <Row key={score._id}>
                             <Col>{score.Username}</Col>
-                            <Col>{score.highScore}</Col>
+                            <Col className="rightCol">{score.highScore}</Col>
                           </Row>
                           ))
                         }
