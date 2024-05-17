@@ -104,6 +104,7 @@ export const PlayView = () => {
             setSound(a);
         })
         .catch(err => {
+          getSound()
         })
       }
     }
