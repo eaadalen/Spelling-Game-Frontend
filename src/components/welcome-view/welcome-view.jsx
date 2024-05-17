@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const WelcomeView = () => {
+  //test
   return (
     <div className="custom-container">
         <div className="left">Spelling Survival</div>
