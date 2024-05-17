@@ -209,7 +209,7 @@ export const PlayView = () => {
 
     async function handleSubmit(event) {
       event.preventDefault();
-      if (spelling == word) {
+      if (spelling.toLowerCase() == word) {
         getSound();
         setCorrectOpen(true)
         if (streak < 4) {
