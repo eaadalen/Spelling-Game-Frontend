@@ -28,7 +28,9 @@
     "redux": "^4.2.1"
   },
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.11.0",
     "@parcel/transformer-sass": "^2.11.0",
+    "@parcel/transformer-webmanifest": "^2.11.0",
     "buffer": "^6.0.3",
     "domain-browser": "^3.5.0",
     "parcel": "^2.11.0",
