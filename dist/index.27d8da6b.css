@@ -131,6 +131,13 @@
   font-size: 2rem;
 }
 
+.description {
+  color: #fff;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
 .container {
   text-align: center;
   justify-content: center;

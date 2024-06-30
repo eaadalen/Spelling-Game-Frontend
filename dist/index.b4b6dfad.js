@@ -36951,6 +36951,14 @@ const WelcomeView = ()=>{
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "description",
+                children: "Fun online game that lets you test your spelling skills against other users. Play now and compete for the high score!"
+            }, void 0, false, {
+                fileName: "src/components/welcome-view/welcome-view.jsx",
+                lineNumber: 9,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "right",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                     to: `/play`,
@@ -36959,17 +36967,17 @@ const WelcomeView = ()=>{
                         children: "Start"
                     }, void 0, false, {
                         fileName: "src/components/welcome-view/welcome-view.jsx",
-                        lineNumber: 11,
+                        lineNumber: 15,
                         columnNumber: 15
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/welcome-view/welcome-view.jsx",
-                    lineNumber: 10,
+                    lineNumber: 14,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/welcome-view/welcome-view.jsx",
-                lineNumber: 9,
+                lineNumber: 13,
                 columnNumber: 9
             }, undefined)
         ]
